@@ -10,6 +10,16 @@
   <style>
     * { box-sizing: border-box; }
 
+    /* Override main_style.css for this page */
+    .navbar {
+      z-index: 100;
+      overflow: visible;
+    }
+
+    .main {
+      margin-top: 200px;
+    }
+
     .submit-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -235,6 +245,9 @@
     .btn-primary:hover { background: #005fa0; }
     .btn-primary:disabled { background: #555; cursor: not-allowed; }
 
+    .btn-secondary { background: #2c3e50; }
+    .btn-secondary:hover { background: #1a252f; }
+
     .btn-danger { background: #c0392b; }
     .btn-danger:hover { background: #96281b; }
 
@@ -449,7 +462,7 @@
 
       <!-- PREVIEW -->
       <div class="preview-panel">
-        <div style="position:sticky;top:170px;">
+        <div style="position:sticky;top:210px;">
           <h2>Live Preview</h2>
           <div class="preview-card" id="preview-card">
             <div id="preview-cover-container">
