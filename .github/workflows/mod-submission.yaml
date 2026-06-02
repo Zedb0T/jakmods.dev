@@ -1,4 +1,4 @@
-name: Process Mod Submission
+name: Process Mod Issue
 
 on:
   issues:
@@ -8,26 +8,58 @@ permissions:
   contents: write
   pull-requests: write
   issues: write
+  actions: write
 
 jobs:
-  process-submission:
-    name: Create PR from submission
+  handle-issue:
+    name: Handle mod issue
     runs-on: ubuntu-latest
-    if: contains(github.event.issue.labels.*.name, 'mod-submission')
+    if: >-
+      contains(github.event.issue.labels.*.name, 'mod-submission') ||
+      contains(github.event.issue.labels.*.name, 'update-source')
     steps:
       - uses: actions/checkout@v6
         with:
           ref: main
 
-      - name: Parse issue and create PR
+      - name: Process issue
         uses: actions/github-script@v7
         with:
           script: |
             const issue = context.payload.issue;
+            const labels = issue.labels.map(l => l.name);
+
+            // ── Route: update-source ──
+            if (labels.includes("update-source")) {
+              await github.rest.actions.createWorkflowDispatch({
+                ...context.repo,
+                workflow_id: "update-mod-source.yaml",
+                ref: "main"
+              });
+
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: issue.number,
+                body: "Mod source update triggered! The [Update Mod Source](https://github.com/" +
+                  context.repo.owner + "/" + context.repo.repo +
+                  "/actions/workflows/update-mod-source.yaml) workflow is now running.\n\n" +
+                  "This usually takes a few minutes. The site will redeploy automatically when it finishes."
+              });
+
+              await github.rest.issues.update({
+                ...context.repo,
+                issue_number: issue.number,
+                state: "closed",
+                state_reason: "completed"
+              });
+              return;
+            }
+
+            // ── Route: mod-submission ──
             const body = issue.body || "";
             const title = issue.title || "";
 
-            // ── Extract YAML block from issue body ──
+            // Extract YAML block from issue body
             const yamlMatch = body.match(/```yaml\n([\s\S]*?)```/);
             if (!yamlMatch) {
               await github.rest.issues.createComment({
@@ -54,7 +86,7 @@ jobs:
             // Determine if this is an add or update
             const isUpdate = title.toLowerCase().startsWith("update mod:");
 
-            // ── Read current config.yaml ──
+            // Read current config.yaml
             const configPath = "scripts/update-mod-source-data/config.yaml";
             const { data: fileData } = await github.rest.repos.getContent({
               ...context.repo,
@@ -63,10 +95,9 @@ jobs:
             });
             const currentContent = Buffer.from(fileData.content, "base64").toString("utf8");
 
-            // ── Build new config content ──
+            // Build new config content
             let newContent;
             if (isUpdate) {
-              // Find and replace the existing block
               const needle = `\n  ${modId}:\n`;
               const idx = currentContent.indexOf(needle);
               if (idx === -1) {
@@ -77,9 +108,8 @@ jobs:
                 });
                 return;
               }
-              const blockStart = idx + 1; // skip leading \n
+              const blockStart = idx + 1;
 
-              // Find where the block ends
               let blockEnd = blockStart + needle.length - 1;
               const rest = currentContent.substring(blockEnd).split("\n");
               for (const line of rest) {
@@ -92,7 +122,6 @@ jobs:
 
               newContent = currentContent.substring(0, blockStart) + yamlBlock + currentContent.substring(blockEnd);
             } else {
-              // Check for duplicates
               if (currentContent.includes(`\n  ${modId}:\n`)) {
                 await github.rest.issues.createComment({
                   ...context.repo,
@@ -102,7 +131,6 @@ jobs:
                 return;
               }
 
-              // Insert before texture_packs section, or append
               const texIdx = currentContent.indexOf("\ntexture_packs:");
               if (texIdx !== -1) {
                 newContent = currentContent.substring(0, texIdx) + "\n" + yamlBlock + currentContent.substring(texIdx);
@@ -111,10 +139,9 @@ jobs:
               }
             }
 
-            // ── Create branch ──
+            // Create branch
             const action = isUpdate ? "update" : "add";
-            const timestamp = Date.now();
-            const branchName = `${action}-mod-${modId}-${timestamp}`;
+            const branchName = `${action}-mod-${modId}-${Date.now()}`;
 
             const { data: mainRef } = await github.rest.git.getRef({
               ...context.repo,
@@ -127,7 +154,7 @@ jobs:
               sha: mainRef.object.sha
             });
 
-            // ── Commit the change ──
+            // Commit
             const displayName = title.replace(/^(add|update)\s+mod:\s*/i, "").trim();
             const commitMessage = isUpdate
               ? `Update mod: ${displayName}`
@@ -142,7 +169,7 @@ jobs:
               branch: branchName
             });
 
-            // ── Create PR ──
+            // Create PR
             const prBody = `${isUpdate ? "Updates" : "Adds"} the **${displayName}** mod entry in \`config.yaml\`.\n\n` +
               `Closes #${issue.number}\n\n` +
               `---\n` +
@@ -156,14 +183,13 @@ jobs:
               base: "main"
             });
 
-            // ── Comment on issue with PR link ──
+            // Comment on issue with PR link
             await github.rest.issues.createComment({
               ...context.repo,
               issue_number: issue.number,
               body: `PR created: #${pr.number}\n\nA maintainer will review and merge it shortly.`
             });
 
-            // ── Add label to issue ──
             await github.rest.issues.addLabels({
               ...context.repo,
               issue_number: issue.number,
