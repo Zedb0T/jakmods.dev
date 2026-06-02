@@ -922,6 +922,20 @@ mods:
     cover_art_url: "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png"
     thumbnail_art_url: "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png"
 
+  my-cool-mod-305:
+    repo_owner: "YourGitHubUsername"
+    repo_name: "OG-MyCoolMod"
+    url: "https://github.com/YourGitHubUsername/OG-MyCoolMod"
+    ignore_versions:
+      - "<0.1.0"
+    display_name: "My Cool Mod-305"
+    description: "A short description of what your mod does. This shows up in the launcher."
+    authors: ["YourName", "FriendName"]
+    tags: ["gameplay-mod", "challenge"]
+    website_url: "https://github.com/YourGitHubUsername/OG-MyCoolMod/blob/main/README.md"
+    cover_art_url: "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png"
+    thumbnail_art_url: "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png"
+
 texture_packs:
   # TODO - this one actually isn't supported end-to-end yet (no releases)
   # snowy-legacy:
