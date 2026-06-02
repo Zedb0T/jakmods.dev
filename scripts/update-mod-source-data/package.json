@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "update": "node ./index.js",
+    "update-pending": "node ./index.js pending",
     "lint": "node ./index.js lint"
   },
   "author": "",

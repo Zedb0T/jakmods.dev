@@ -8,10 +8,16 @@ import semver from 'semver';
 
 const args = process.argv.slice(2);
 let lintMode = false;
-if (args.length !== 0) {
-    lintMode = args[0] === "lint";
-    console.log("lint mode enabled");
+let pendingMode = false;
+for (const arg of args) {
+    if (arg === "lint") { lintMode = true; console.log("lint mode enabled"); }
+    if (arg === "pending") { pendingMode = true; console.log("pending mode enabled"); }
 }
+
+// In pending mode, read from pending_config.yaml and write to pending_mods.json
+const CONFIG_FILE = pendingMode ? "./pending_config.yaml" : "./config.yaml";
+const OUTPUT_JSON = pendingMode ? "../../site/pending_mods.json" : "../../site/mods.json";
+const OUTPUT_JSON_FORMATTED = pendingMode ? "../../site/pending_mods_formatted.json" : "../../site/mods_formatted.json";
 
 let octokit = undefined;
 if (!lintMode) {
@@ -61,14 +67,21 @@ function validateJsonKeys(keysToCheck, keys, messagePrefix) {
 }
 
 // Retrieve the configuration so we know what to look for
-if (!fs.existsSync("./config.yaml")) {
-    exitWithError("Couldn't locate 'config.yaml' file, aborting!");
+if (!fs.existsSync(CONFIG_FILE)) {
+    if (pendingMode) {
+        // No pending config is fine — write empty JSON and exit
+        console.log("No pending_config.yaml found, writing empty pending_mods.json");
+        const empty = { schemaVersion: "1.0.0", sourceName: "PendingJakMods", mods: {}, texturePacks: {}, lastUpdated: (new Date()).toISOString() };
+        fs.writeFileSync(OUTPUT_JSON, JSON.stringify(empty));
+        exit(0);
+    }
+    exitWithError(`Couldn't locate '${CONFIG_FILE}' file, aborting!`);
 }
 
 // Parse it
 let configFile;
 try {
-    configFile = YAML.parse(fs.readFileSync("./config.yaml").toString())
+    configFile = YAML.parse(fs.readFileSync(CONFIG_FILE).toString())
 } catch (e) {
     exitWithError(`Couldn't successfully parse config file, fix it!: ${e}`);
 }
@@ -452,22 +465,22 @@ if (configFile["texture_packs"]) {
 
 if (!lintMode) {
     // Check if the resulting file is different from the existing one (minus lastUpdated)
-    if (fs.existsSync("../../site/mods.json")) {
-        let existingModSourceData = JSON.parse(fs.readFileSync("../../site/mods.json"));
+    if (fs.existsSync(OUTPUT_JSON)) {
+        let existingModSourceData = JSON.parse(fs.readFileSync(OUTPUT_JSON));
         delete existingModSourceData["lastUpdated"];
         // if it is, copy it over,
         if (JSON.stringify(existingModSourceData) === JSON.stringify(modSourceData)) {
-            console.log("mods.json would be unchanged, not updating the file");
+            console.log(`${OUTPUT_JSON} would be unchanged, not updating the file`);
         } else { // if not, do nothing!
             modSourceData.lastUpdated = (new Date()).toISOString();
             // Save the json file out
-            fs.writeFileSync("../../site/mods.json", JSON.stringify(modSourceData));
-            fs.writeFileSync("../../site/mods_formatted.json", JSON.stringify(modSourceData, null, 2));
+            fs.writeFileSync(OUTPUT_JSON, JSON.stringify(modSourceData));
+            fs.writeFileSync(OUTPUT_JSON_FORMATTED, JSON.stringify(modSourceData, null, 2));
         }
     } else {
         modSourceData.lastUpdated = (new Date()).toISOString();
         // Save the json file out
-        fs.writeFileSync("../../site/mods.json", JSON.stringify(modSourceData));
-        fs.writeFileSync("../../site/mods_formatted.json", JSON.stringify(modSourceData, null, 2));
+        fs.writeFileSync(OUTPUT_JSON, JSON.stringify(modSourceData));
+        fs.writeFileSync(OUTPUT_JSON_FORMATTED, JSON.stringify(modSourceData, null, 2));
     }
 }

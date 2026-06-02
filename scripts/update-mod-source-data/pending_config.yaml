@@ -1,29 +1,3 @@
 metadata:
   name: "PendingJakMods"
-mods:
-  my-cool-mod-305:
-    repo_owner: "YourGitHubUsername"
-    repo_name: "OG-MyCoolMod"
-    url: "https://github.com/YourGitHubUsername/OG-MyCoolMod"
-    ignore_versions:
-      - "<0.1.0"
-    display_name: "My Cool Mod-305"
-    description: "A short description of what your mod does. This shows up in the launcher."
-    authors: ["YourName", "FriendName"]
-    tags: ["gameplay-mod", "challenge"]
-    website_url: "https://github.com/YourGitHubUsername/OG-MyCoolMod/blob/main/README.md"
-    cover_art_url: "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png"
-    thumbnail_art_url: "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png"
-  mortin-time:
-    repo_owner: "my-opengoal-mods"
-    repo_name: "OG-Jak-The-Chicken-Reborn"
-    url: "https://github.com/my-opengoal-mods/OG-Jak-The-Chicken-Reborn"
-    release_date_override: "2023-10-21"
-    ignore_versions:
-      - "<1.13.1"
-    display_name: "Jak the CHICKENNN"
-    description: "Adds over 18 levels and 900+ collectibles to the game and new powerups and adventures! Note: currently it is disguised as a fart mod. It is not."
-    authors: ["zed"]
-    tags: ["gameplay-mod", "challenge"]
-    cover_art_url: "https://www.speedrun.com/static/game/j1lnnwz6/cover.png?v=47fd2cf"
-    thumbnail_art_url: "https://raw.githubusercontent.com/OpenGOAL-Mods/jakmods.dev/main/ModImages/JakChickenSmall.png"
+mods: {}
