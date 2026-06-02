@@ -3,20 +3,29 @@ name: Process Mod Issue
 on:
   issues:
     types: [opened]
+  pull_request:
+    types: [closed]
+    paths:
+      - "scripts/update-mod-source-data/config.yaml"
 
 permissions:
   contents: write
   pull-requests: write
   issues: write
   actions: write
+  pages: write
+  id-token: write
 
 jobs:
+  # ── Triggered by issue open ──────────────────────────────
   handle-issue:
     name: Handle mod issue
     runs-on: ubuntu-latest
     if: >-
-      contains(github.event.issue.labels.*.name, 'mod-submission') ||
-      contains(github.event.issue.labels.*.name, 'update-source')
+      github.event_name == 'issues' && (
+        contains(github.event.issue.labels.*.name, 'mod-submission') ||
+        contains(github.event.issue.labels.*.name, 'update-source')
+      )
     steps:
       - uses: actions/checkout@v6
         with:
@@ -59,7 +68,6 @@ jobs:
             const body = issue.body || "";
             const title = issue.title || "";
 
-            // Extract YAML block from issue body
             const yamlMatch = body.match(/```yaml\n([\s\S]*?)```/);
             if (!yamlMatch) {
               await github.rest.issues.createComment({
@@ -71,7 +79,6 @@ jobs:
             }
             const yamlBlock = yamlMatch[1];
 
-            // Validate the YAML block has the basic structure
             const modIdMatch = yamlBlock.match(/^\s{2}([a-z0-9][a-z0-9\-]*[a-z0-9]):\s*$/m);
             if (!modIdMatch) {
               await github.rest.issues.createComment({
@@ -83,7 +90,6 @@ jobs:
             }
             const modId = modIdMatch[1];
 
-            // Determine if this is an add or update
             const isUpdate = title.toLowerCase().startsWith("update mod:");
 
             // Read current config.yaml
@@ -154,7 +160,7 @@ jobs:
               sha: mainRef.object.sha
             });
 
-            // Commit
+            // Commit config change to branch
             const displayName = title.replace(/^(add|update)\s+mod:\s*/i, "").trim();
             const commitMessage = isUpdate
               ? `Update mod: ${displayName}`
@@ -183,15 +189,266 @@ jobs:
               base: "main"
             });
 
-            // Comment on issue with PR link
             await github.rest.issues.createComment({
               ...context.repo,
               issue_number: issue.number,
-              body: `PR created: #${pr.number}\n\nA maintainer will review and merge it shortly.`
+              body: `PR created: #${pr.number}\n\nA maintainer will review and merge it shortly.\n\nThe mod has also been added to the **pending preview** list so it can be previewed in the launcher.`
             });
 
             await github.rest.issues.addLabels({
               ...context.repo,
               issue_number: issue.number,
               labels: ["pr-created"]
+            });
+
+            // ── Add to pending_config.yaml on main ──
+            const pendingPath = "scripts/update-mod-source-data/pending_config.yaml";
+            let pendingContent = 'metadata:\n  name: "PendingJakMods"\nmods: {}\n';
+            let pendingSha = null;
+
+            try {
+              const { data: pendingFile } = await github.rest.repos.getContent({
+                ...context.repo,
+                path: pendingPath,
+                ref: "main"
+              });
+              pendingContent = Buffer.from(pendingFile.content, "base64").toString("utf8");
+              pendingSha = pendingFile.sha;
+            } catch (e) {
+              // File doesn't exist yet, use default
+            }
+
+            // Append the mod entry before the closing of mods section
+            // If mods is empty `{}`, replace it
+            if (pendingContent.includes("mods: {}")) {
+              pendingContent = pendingContent.replace("mods: {}", "mods:\n" + yamlBlock);
+            } else {
+              // Append to end
+              pendingContent = pendingContent.trimEnd() + "\n" + yamlBlock;
+            }
+
+            const pendingCommitOpts = {
+              ...context.repo,
+              path: pendingPath,
+              message: `pending: Add ${displayName}`,
+              content: Buffer.from(pendingContent).toString("base64"),
+              branch: "main"
+            };
+            if (pendingSha) pendingCommitOpts.sha = pendingSha;
+
+            await github.rest.repos.createOrUpdateFileContents(pendingCommitOpts);
+
+            // ── Generate pending_mods.json on main ──
+            // Re-read the pending config we just wrote (need fresh SHA)
+            const { data: freshPending } = await github.rest.repos.getContent({
+              ...context.repo,
+              path: pendingPath,
+              ref: "main"
+            });
+            const freshPendingContent = Buffer.from(freshPending.content, "base64").toString("utf8");
+
+            // Parse YAML manually (simple key-value extraction for each mod)
+            const pendingJson = { schemaVersion: "1.0.0", sourceName: "PendingJakMods", mods: {} };
+            const modBlocks = freshPendingContent.split(/\n  (?=[a-z0-9])/);
+            for (const block of modBlocks) {
+              const idMatch = block.match(/^([a-z0-9][a-z0-9\-]*[a-z0-9]):\s*$/m);
+              if (!idMatch) continue;
+              const id = idMatch[1];
+              const get = (key) => {
+                const m = block.match(new RegExp(`${key}:\\s*"([^"]*)"`, "m"));
+                return m ? m[1] : null;
+              };
+              const getList = (key) => {
+                const m = block.match(new RegExp(`${key}:\\s*\\[([^\\]]*)]`, "m"));
+                return m ? m[1].split(",").map(s => s.trim().replace(/^"|"$/g, "")).filter(Boolean) : [];
+              };
+
+              pendingJson.mods[id] = {
+                displayName: get("display_name") || id,
+                description: get("description") || "",
+                authors: getList("authors"),
+                tags: getList("tags"),
+                coverArtUrl: get("cover_art_url") || null,
+                thumbnailArtUrl: get("thumbnail_art_url") || null,
+                repoOwner: get("repo_owner") || null,
+                repoName: get("repo_name") || null,
+                websiteUrl: get("website_url") || null,
+                externalLink: get("external_link") || null,
+                supportedGames: getList("supported_games"),
+                versions: [],
+                perGameConfig: {}
+              };
+            }
+
+            // Write pending_mods.json
+            const jsonPath = "site/pending_mods.json";
+            let jsonSha = null;
+            try {
+              const { data: jsonFile } = await github.rest.repos.getContent({
+                ...context.repo,
+                path: jsonPath,
+                ref: "main"
+              });
+              jsonSha = jsonFile.sha;
+            } catch (e) {}
+
+            const jsonOpts = {
+              ...context.repo,
+              path: jsonPath,
+              message: `pending: Update pending_mods.json`,
+              content: Buffer.from(JSON.stringify(pendingJson, null, 2)).toString("base64"),
+              branch: "main"
+            };
+            if (jsonSha) jsonOpts.sha = jsonSha;
+
+            await github.rest.repos.createOrUpdateFileContents(jsonOpts);
+
+  # ── Triggered by PR merge: clean up pending ──────────────
+  cleanup-pending:
+    name: Clean up pending mods
+    runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.merged == true
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Remove merged mods from pending
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pendingPath = "scripts/update-mod-source-data/pending_config.yaml";
+            const configPath = "scripts/update-mod-source-data/config.yaml";
+
+            // Read both files
+            let pendingContent, pendingSha;
+            try {
+              const { data: pendingFile } = await github.rest.repos.getContent({
+                ...context.repo,
+                path: pendingPath,
+                ref: "main"
+              });
+              pendingContent = Buffer.from(pendingFile.content, "base64").toString("utf8");
+              pendingSha = pendingFile.sha;
+            } catch (e) {
+              console.log("No pending_config.yaml found, nothing to clean.");
+              return;
+            }
+
+            // If pending is empty, nothing to do
+            if (pendingContent.includes("mods: {}") || !pendingContent.match(/^\s{2}[a-z]/m)) {
+              console.log("No pending mods to clean.");
+              return;
+            }
+
+            const { data: configFile } = await github.rest.repos.getContent({
+              ...context.repo,
+              path: configPath,
+              ref: "main"
+            });
+            const configContent = Buffer.from(configFile.content, "base64").toString("utf8");
+
+            // Find all mod IDs in pending
+            const pendingIds = [...pendingContent.matchAll(/^\s{2}([a-z0-9][a-z0-9\-]*[a-z0-9]):\s*$/gm)]
+              .map(m => m[1]);
+
+            // Remove any that now exist in config.yaml
+            let cleaned = pendingContent;
+            let removedAny = false;
+            for (const id of pendingIds) {
+              if (configContent.includes(`\n  ${id}:\n`) || configContent.includes(`\nmods:\n  ${id}:\n`)) {
+                // Remove this block from pending
+                const needle = `\n  ${id}:\n`;
+                const idx = cleaned.indexOf(needle);
+                if (idx === -1) continue;
+                const blockStart = idx;
+
+                let blockEnd = idx + needle.length;
+                const rest = cleaned.substring(blockEnd).split("\n");
+                for (const line of rest) {
+                  if (line === "" || /^    /.test(line) || /^  #/.test(line)) {
+                    blockEnd += line.length + 1;
+                  } else {
+                    break;
+                  }
+                }
+
+                cleaned = cleaned.substring(0, blockStart) + cleaned.substring(blockEnd);
+                removedAny = true;
+                console.log(`Removed ${id} from pending (now in config.yaml)`);
+              }
+            }
+
+            if (!removedAny) {
+              console.log("No pending mods were merged, nothing to clean.");
+              return;
+            }
+
+            // If no mods remain, reset to empty
+            const remainingIds = [...cleaned.matchAll(/^\s{2}([a-z0-9][a-z0-9\-]*[a-z0-9]):\s*$/gm)];
+            if (remainingIds.length === 0) {
+              cleaned = 'metadata:\n  name: "PendingJakMods"\nmods: {}\n';
+            }
+
+            // Write cleaned pending_config.yaml
+            await github.rest.repos.createOrUpdateFileContents({
+              ...context.repo,
+              path: pendingPath,
+              message: "pending: Remove merged mods",
+              content: Buffer.from(cleaned).toString("base64"),
+              sha: pendingSha,
+              branch: "main"
+            });
+
+            // Regenerate pending_mods.json
+            const pendingJson = { schemaVersion: "1.0.0", sourceName: "PendingJakMods", mods: {} };
+            if (remainingIds.length > 0) {
+              const modBlocks = cleaned.split(/\n  (?=[a-z0-9])/);
+              for (const block of modBlocks) {
+                const idMatch = block.match(/^([a-z0-9][a-z0-9\-]*[a-z0-9]):\s*$/m);
+                if (!idMatch) continue;
+                const id = idMatch[1];
+                const get = (key) => {
+                  const m = block.match(new RegExp(`${key}:\\s*"([^"]*)"`, "m"));
+                  return m ? m[1] : null;
+                };
+                const getList = (key) => {
+                  const m = block.match(new RegExp(`${key}:\\s*\\[([^\\]]*)]`, "m"));
+                  return m ? m[1].split(",").map(s => s.trim().replace(/^"|"$/g, "")).filter(Boolean) : [];
+                };
+
+                pendingJson.mods[id] = {
+                  displayName: get("display_name") || id,
+                  description: get("description") || "",
+                  authors: getList("authors"),
+                  tags: getList("tags"),
+                  coverArtUrl: get("cover_art_url") || null,
+                  thumbnailArtUrl: get("thumbnail_art_url") || null,
+                  repoOwner: get("repo_owner") || null,
+                  repoName: get("repo_name") || null,
+                  websiteUrl: get("website_url") || null,
+                  externalLink: get("external_link") || null,
+                  supportedGames: getList("supported_games"),
+                  versions: [],
+                  perGameConfig: {}
+                };
+              }
+            }
+
+            const jsonPath = "site/pending_mods.json";
+            const { data: jsonFile } = await github.rest.repos.getContent({
+              ...context.repo,
+              path: jsonPath,
+              ref: "main"
+            });
+
+            await github.rest.repos.createOrUpdateFileContents({
+              ...context.repo,
+              path: jsonPath,
+              message: "pending: Update pending_mods.json",
+              content: Buffer.from(JSON.stringify(pendingJson, null, 2)).toString("base64"),
+              sha: jsonFile.sha,
+              branch: "main"
             });
