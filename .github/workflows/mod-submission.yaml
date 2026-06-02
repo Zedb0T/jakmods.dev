@@ -303,6 +303,15 @@ jobs:
 
             await github.rest.repos.createOrUpdateFileContents(jsonOpts);
 
+  # Deploy site after pending update
+  deploy-after-submission:
+    name: Deploy site
+    needs: handle-issue
+    if: >-
+      github.event_name == 'issues' &&
+      contains(github.event.issue.labels.*.name, 'mod-submission')
+    uses: ./.github/workflows/deploy-gh-pages.yaml
+
   # ── Triggered by PR merge: clean up pending ──────────────
   cleanup-pending:
     name: Clean up pending mods
@@ -452,3 +461,9 @@ jobs:
               sha: jsonFile.sha,
               branch: "main"
             });
+
+  # Deploy site after pending cleanup
+  deploy-after-cleanup:
+    name: Deploy site
+    needs: cleanup-pending
+    uses: ./.github/workflows/deploy-gh-pages.yaml
