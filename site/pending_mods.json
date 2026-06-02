@@ -72,6 +72,26 @@
       "supportedGames": [],
       "versions": [],
       "perGameConfig": {}
+    },
+    "my-cool-mod-321321": {
+      "displayName": "Gordon And Daxter 2",
+      "description": "A short description of what your mod does. This shows up in the launcher.",
+      "authors": [
+        "Zed"
+      ],
+      "tags": [
+        "gameplay-mod",
+        "challenge"
+      ],
+      "coverArtUrl": "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png",
+      "thumbnailArtUrl": "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png",
+      "repoOwner": "mfOliveira19",
+      "repoName": "GordonAndDaxter-Mod",
+      "websiteUrl": "https://github.com/YourGitHubUsername/OG-MyCoolMod/blob/main/README.md",
+      "externalLink": null,
+      "supportedGames": [],
+      "versions": [],
+      "perGameConfig": {}
     }
   }
 }
