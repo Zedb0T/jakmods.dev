@@ -2,7 +2,7 @@ name: Trigger Mod Source Update
 
 on:
   issues:
-    types: [opened, labeled]
+    types: [opened]
 
 permissions:
   actions: write
