@@ -1,1 +1,57 @@
-{"schemaVersion":"1.0.0","sourceName":"PendingJakMods","mods":{}}
+{
+  "schemaVersion": "1.0.0",
+  "sourceName": "PendingJakMods",
+  "mods": {
+    "metadata": {
+      "displayName": "metadata",
+      "description": "",
+      "authors": [],
+      "tags": [],
+      "coverArtUrl": null,
+      "thumbnailArtUrl": null,
+      "repoOwner": null,
+      "repoName": null,
+      "websiteUrl": null,
+      "externalLink": null,
+      "supportedGames": [],
+      "versions": [],
+      "perGameConfig": {}
+    },
+    "mods": {
+      "displayName": "mods",
+      "description": "",
+      "authors": [],
+      "tags": [],
+      "coverArtUrl": null,
+      "thumbnailArtUrl": null,
+      "repoOwner": null,
+      "repoName": null,
+      "websiteUrl": null,
+      "externalLink": null,
+      "supportedGames": [],
+      "versions": [],
+      "perGameConfig": {}
+    },
+    "my-cool-mod-305": {
+      "displayName": "My Cool Mod-305",
+      "description": "A short description of what your mod does. This shows up in the launcher.",
+      "authors": [
+        "YourName",
+        "FriendName"
+      ],
+      "tags": [
+        "gameplay-mod",
+        "challenge"
+      ],
+      "coverArtUrl": "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png",
+      "thumbnailArtUrl": "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png",
+      "repoOwner": "YourGitHubUsername",
+      "repoName": "OG-MyCoolMod",
+      "websiteUrl": "https://github.com/YourGitHubUsername/OG-MyCoolMod/blob/main/README.md",
+      "externalLink": null,
+      "supportedGames": [],
+      "versions": [],
+      "perGameConfig": {}
+    }
+  }
+}
