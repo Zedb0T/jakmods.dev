@@ -419,14 +419,12 @@ mods:
     release_date_override: "2023-10-21"
     ignore_versions:
       - "<1.13.1"
-    display_name: "Jak the CHICKEN"
+    display_name: "Jak the CHICKENNNNN"
     description: "Adds over 18 levels and 900+ collectibles to the game and new powerups and adventures! Note: currently it is disguised as a fart mod. It is not."
     authors: ["zed"]
-    tags: ["challenge", "gameplay-mod"]
-    # website_url: "https://github.com/my-opengoal-mods/OG-Jak-The-Chicken-Reborn/blob/main/README.md"
+    tags: ["gameplay-mod", "challenge"]
     cover_art_url: "https://www.speedrun.com/static/game/j1lnnwz6/cover.png?v=47fd2cf"
     thumbnail_art_url: "https://raw.githubusercontent.com/OpenGOAL-Mods/jakmods.dev/main/ModImages/JakChickenSmall.png"
-
   sm64-1:
     repo_owner: "OpenGOAL-Mods"
     repo_name: "Super-Mario-Legacy"
