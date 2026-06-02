@@ -52,6 +52,26 @@
       "supportedGames": [],
       "versions": [],
       "perGameConfig": {}
+    },
+    "mortin-time": {
+      "displayName": "Jak the CHICKENNN",
+      "description": "Adds over 18 levels and 900+ collectibles to the game and new powerups and adventures! Note: currently it is disguised as a fart mod. It is not.",
+      "authors": [
+        "zed"
+      ],
+      "tags": [
+        "gameplay-mod",
+        "challenge"
+      ],
+      "coverArtUrl": "https://www.speedrun.com/static/game/j1lnnwz6/cover.png?v=47fd2cf",
+      "thumbnailArtUrl": "https://raw.githubusercontent.com/OpenGOAL-Mods/jakmods.dev/main/ModImages/JakChickenSmall.png",
+      "repoOwner": "my-opengoal-mods",
+      "repoName": "OG-Jak-The-Chicken-Reborn",
+      "websiteUrl": null,
+      "externalLink": null,
+      "supportedGames": [],
+      "versions": [],
+      "perGameConfig": {}
     }
   }
 }
