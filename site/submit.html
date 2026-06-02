@@ -435,6 +435,16 @@
           </div>
           <div id="status" class="status-msg"></div>
         </div>
+
+        <!-- REFRESH -->
+        <div class="submit-section" style="margin-top:16px;">
+          <h3>Refresh Mod List</h3>
+          <p style="font-size:13px;">
+            After a mod PR is merged, click this to trigger a rebuild of the launcher's mod list.
+            This re-fetches all GitHub releases and updates <code>mods.json</code>.
+          </p>
+          <button class="btn btn-secondary" onclick="triggerRefresh()">Refresh Mod Source</button>
+        </div>
       </div>
 
       <!-- PREVIEW -->
@@ -786,6 +796,23 @@
       window.open(issueUrl, "_blank");
 
       setStatus("GitHub opened in a new tab — click 'Submit new issue' there to finish!", "success");
+    }
+
+    // ─── Trigger mod source refresh via issue ─────────────
+    function triggerRefresh() {
+      const title = "Update Mod Source";
+      const body = `## Mod Source Refresh Request\n\n` +
+        `Requesting a rebuild of the mod list (\`mods.json\`) to pick up any newly merged changes.\n\n` +
+        `This will automatically run the update workflow and close this issue when done.\n\n` +
+        `---\n*Triggered via [jakmods.dev/submit](https://jakmods.dev/submit.html)*`;
+
+      const params = new URLSearchParams({
+        title,
+        body,
+        labels: "update-source",
+      });
+      const issueUrl = `https://github.com/${REPO_OWNER}/${REPO_NAME}/issues/new?${params}`;
+      window.open(issueUrl, "_blank");
     }
 
     // ─── Pre-fill example on first load ────────────────────

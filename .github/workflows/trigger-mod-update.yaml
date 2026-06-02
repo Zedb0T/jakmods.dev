@@ -1,0 +1,45 @@
+name: Trigger Mod Source Update
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  actions: write
+  issues: write
+
+jobs:
+  trigger-update:
+    name: Dispatch Update & Close Issue
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'update-source')
+    steps:
+      - name: Trigger update workflow and close issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+
+            // Dispatch the existing Update Mod Source workflow
+            await github.rest.actions.createWorkflowDispatch({
+              ...context.repo,
+              workflow_id: "update-mod-source.yaml",
+              ref: "main"
+            });
+
+            // Comment and close
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: issue.number,
+              body: "Mod source update triggered! The [Update Mod Source](https://github.com/" +
+                context.repo.owner + "/" + context.repo.repo +
+                "/actions/workflows/update-mod-source.yaml) workflow is now running.\n\n" +
+                "This usually takes a few minutes. The site will redeploy automatically when it finishes."
+            });
+
+            await github.rest.issues.update({
+              ...context.repo,
+              issue_number: issue.number,
+              state: "closed",
+              state_reason: "completed"
+            });
