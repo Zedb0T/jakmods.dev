@@ -530,14 +530,13 @@
       const modId = el("mod-selector").value;
       if (!modId) {
         editingModId = null;
-        resetFormFields();
+        prefillExample();
         el("mod-id").readOnly = false;
         el("mode-badge").textContent = "NEW";
         el("mode-badge").className = "mode-badge new-mode";
         el("submit-heading").textContent = "Submit New Mod";
         el("submit-btn").textContent = "Submit on GitHub";
         el("reset-btn").style.display = "none";
-        updatePreview();
         return;
       }
 
@@ -788,9 +787,26 @@
       setStatus("GitHub opened in a new tab — click 'Submit new issue' there to finish!", "success");
     }
 
+    // ─── Pre-fill example on first load ────────────────────
+    function prefillExample() {
+      el("mod-id").value = "my-cool-mod";
+      el("display-name").value = "My Cool Mod";
+      el("description").value = "A short description of what your mod does. This shows up in the launcher.";
+      el("authors").value = "YourName, FriendName";
+      el("repo-owner").value = "YourGitHubUsername";
+      el("repo-name").value = "OG-MyCoolMod";
+      el("website-url").value = "https://github.com/YourGitHubUsername/OG-MyCoolMod/blob/main/README.md";
+      el("cover-art-url").value = "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png";
+      el("thumbnail-art-url").value = "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png";
+      el("ignore-versions").value = "<0.1.0";
+      document.querySelector('#tags-grid input[value="gameplay-mod"]').checked = true;
+      document.querySelector('#tags-grid input[value="challenge"]').checked = true;
+      updatePreview();
+    }
+
     // ─── Boot ───────────────────────────────────────────────
     loadConfig();
-    updatePreview();
+    prefillExample();
   </script>
 </body>
 </html>
