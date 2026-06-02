@@ -1,0 +1,171 @@
+name: Process Mod Submission
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  process-submission:
+    name: Create PR from submission
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'mod-submission')
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Parse issue and create PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body || "";
+            const title = issue.title || "";
+
+            // ── Extract YAML block from issue body ──
+            const yamlMatch = body.match(/```yaml\n([\s\S]*?)```/);
+            if (!yamlMatch) {
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: issue.number,
+                body: "Could not find a YAML code block in this issue. Please use the [submit form](https://jakmods.dev/submit.html) to generate the correct format."
+              });
+              return;
+            }
+            const yamlBlock = yamlMatch[1];
+
+            // Validate the YAML block has the basic structure
+            const modIdMatch = yamlBlock.match(/^\s{2}([a-z0-9][a-z0-9\-]*[a-z0-9]):\s*$/m);
+            if (!modIdMatch) {
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: issue.number,
+                body: "Could not parse a valid mod ID from the YAML block. The entry should start with a 2-space indented kebab-case key like `  my-mod:`."
+              });
+              return;
+            }
+            const modId = modIdMatch[1];
+
+            // Determine if this is an add or update
+            const isUpdate = title.toLowerCase().startsWith("update mod:");
+
+            // ── Read current config.yaml ──
+            const configPath = "scripts/update-mod-source-data/config.yaml";
+            const { data: fileData } = await github.rest.repos.getContent({
+              ...context.repo,
+              path: configPath,
+              ref: "main"
+            });
+            const currentContent = Buffer.from(fileData.content, "base64").toString("utf8");
+
+            // ── Build new config content ──
+            let newContent;
+            if (isUpdate) {
+              // Find and replace the existing block
+              const needle = `\n  ${modId}:\n`;
+              const idx = currentContent.indexOf(needle);
+              if (idx === -1) {
+                await github.rest.issues.createComment({
+                  ...context.repo,
+                  issue_number: issue.number,
+                  body: `Could not find existing mod \`${modId}\` in config.yaml. If this is a new mod, change the issue title to start with "Add mod:".`
+                });
+                return;
+              }
+              const blockStart = idx + 1; // skip leading \n
+
+              // Find where the block ends
+              let blockEnd = blockStart + needle.length - 1;
+              const rest = currentContent.substring(blockEnd).split("\n");
+              for (const line of rest) {
+                if (line === "" || /^    /.test(line) || /^  #/.test(line)) {
+                  blockEnd += line.length + 1;
+                } else {
+                  break;
+                }
+              }
+
+              newContent = currentContent.substring(0, blockStart) + yamlBlock + currentContent.substring(blockEnd);
+            } else {
+              // Check for duplicates
+              if (currentContent.includes(`\n  ${modId}:\n`)) {
+                await github.rest.issues.createComment({
+                  ...context.repo,
+                  issue_number: issue.number,
+                  body: `Mod ID \`${modId}\` already exists in config.yaml. If you want to update it, change the issue title to start with "Update mod:".`
+                });
+                return;
+              }
+
+              // Insert before texture_packs section, or append
+              const texIdx = currentContent.indexOf("\ntexture_packs:");
+              if (texIdx !== -1) {
+                newContent = currentContent.substring(0, texIdx) + "\n" + yamlBlock + currentContent.substring(texIdx);
+              } else {
+                newContent = currentContent + "\n" + yamlBlock;
+              }
+            }
+
+            // ── Create branch ──
+            const action = isUpdate ? "update" : "add";
+            const timestamp = Date.now();
+            const branchName = `${action}-mod-${modId}-${timestamp}`;
+
+            const { data: mainRef } = await github.rest.git.getRef({
+              ...context.repo,
+              ref: "heads/main"
+            });
+
+            await github.rest.git.createRef({
+              ...context.repo,
+              ref: `refs/heads/${branchName}`,
+              sha: mainRef.object.sha
+            });
+
+            // ── Commit the change ──
+            const displayName = title.replace(/^(add|update)\s+mod:\s*/i, "").trim();
+            const commitMessage = isUpdate
+              ? `Update mod: ${displayName}`
+              : `Add mod: ${displayName}`;
+
+            await github.rest.repos.createOrUpdateFileContents({
+              ...context.repo,
+              path: configPath,
+              message: commitMessage,
+              content: Buffer.from(newContent).toString("base64"),
+              sha: fileData.sha,
+              branch: branchName
+            });
+
+            // ── Create PR ──
+            const prBody = `${isUpdate ? "Updates" : "Adds"} the **${displayName}** mod entry in \`config.yaml\`.\n\n` +
+              `Closes #${issue.number}\n\n` +
+              `---\n` +
+              `*Auto-generated from [issue #${issue.number}](${issue.html_url}) via the [mod submission form](https://jakmods.dev/submit.html).*`;
+
+            const { data: pr } = await github.rest.pulls.create({
+              ...context.repo,
+              title: commitMessage,
+              body: prBody,
+              head: branchName,
+              base: "main"
+            });
+
+            // ── Comment on issue with PR link ──
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: issue.number,
+              body: `PR created: #${pr.number}\n\nA maintainer will review and merge it shortly.`
+            });
+
+            // ── Add label to issue ──
+            await github.rest.issues.addLabels({
+              ...context.repo,
+              issue_number: issue.number,
+              labels: ["pr-created"]
+            });

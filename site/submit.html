@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit a Mod - JakMods</title>
+  <link rel="icon" href="icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="main_style.css">
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+
+    .submit-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .submit-container { grid-template-columns: 1fr; }
+      .preview-panel { order: -1; }
+    }
+
+    .form-panel, .preview-panel {
+      padding: 24px;
+      border-radius: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .form-group .hint {
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="url"],
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #555;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .tag-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag-grid label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border: 1px solid #555;
+      border-radius: 16px;
+      font-size: 13px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tag-grid label.checked {
+      border-color: #0079ca;
+    }
+
+    .game-grid {
+      display: flex;
+      gap: 16px;
+    }
+
+    .game-grid label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    /* Mode selector */
+    .mode-bar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .mode-bar select {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 12px;
+      border: 1px solid #555;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .mode-badge {
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .mode-badge.new-mode { background: #27ae60; color: white; }
+    .mode-badge.edit-mode { background: #e67e22; color: white; }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid #555;
+      border-top-color: #0079ca;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Preview card */
+    .preview-card {
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .preview-cover {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+    }
+
+    .preview-cover-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      opacity: 0.5;
+    }
+
+    .preview-body { padding: 16px; }
+
+    .preview-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0 0 4px 0;
+    }
+
+    .preview-authors {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+
+    .preview-desc {
+      font-size: 14px;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .preview-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .preview-tag {
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      border: 1px solid #555;
+    }
+
+    .yaml-preview {
+      font-family: monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+      word-break: break-all;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #555;
+      max-height: 400px;
+      overflow-y: auto;
+      margin-top: 16px;
+    }
+
+    .submit-section {
+      margin-top: 24px;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #555;
+    }
+
+    .submit-section h3 { margin-top: 0; }
+
+    .btn {
+      padding: 10px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .btn-primary { background: #0079ca; }
+    .btn-primary:hover { background: #005fa0; }
+    .btn-primary:disabled { background: #555; cursor: not-allowed; }
+
+    .btn-danger { background: #c0392b; }
+    .btn-danger:hover { background: #96281b; }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .status-msg {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .status-msg.error { border: 1px solid #e74c3c; display: block; }
+    .status-msg.success { border: 1px solid #2ecc71; display: block; }
+    .status-msg.info { border: 1px solid #3498db; display: block; }
+
+    .required::after {
+      content: " *";
+      color: #e74c3c;
+    }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid #555;
+      margin: 24px 0;
+    }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      .form-group input[type="text"],
+      .form-group input[type="url"],
+      .form-group textarea,
+      .form-group select,
+      .mode-bar select {
+        background: #1a2a3a;
+        color: white;
+        border-color: #3a5a7a;
+      }
+
+      .form-panel, .preview-panel { background: #0f1a28; }
+      .preview-card { background: #1a2a3a; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+      .preview-cover-placeholder { background: #1a2a3a; }
+      .yaml-preview { background: #0a1520; border-color: #3a5a7a; }
+      .submit-section { border-color: #3a5a7a; }
+      .tag-grid label { border-color: #3a5a7a; }
+    }
+
+    @media (prefers-color-scheme: light) {
+      .form-panel, .preview-panel { background: #f0f4f8; }
+      .preview-card { background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+      .preview-cover-placeholder { background: #e8ecf0; }
+      .yaml-preview { background: #f8f8f8; border-color: #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <center>
+      <h1>Submit a Mod</h1>
+      <p>Add a new mod or edit an existing entry. This creates a pull request on <a href="https://github.com/OpenGOAL-Mods/jakmods.dev">GitHub</a> automatically.</p>
+    </center>
+  </div>
+
+  <div class="main">
+    <div class="submit-container">
+      <!-- FORM -->
+      <div class="form-panel">
+        <!-- Mode selector -->
+        <div class="mode-bar">
+          <select id="mod-selector" onchange="onModSelected()">
+            <option value="">Loading mods...</option>
+          </select>
+          <span class="mode-badge new-mode" id="mode-badge">NEW</span>
+        </div>
+
+        <h2>Mod Details</h2>
+
+        <div class="form-group">
+          <label class="required" for="mod-id">Mod ID</label>
+          <div class="hint">Unique kebab-case identifier (e.g. "my-cool-mod")</div>
+          <input type="text" id="mod-id" placeholder="my-cool-mod" pattern="[a-z0-9\-]+" oninput="updatePreview()">
+        </div>
+
+        <div class="form-group">
+          <label class="required" for="display-name">Display Name</label>
+          <input type="text" id="display-name" placeholder="My Cool Mod" oninput="updatePreview()">
+        </div>
+
+        <div class="form-group">
+          <label class="required" for="description">Description</label>
+          <textarea id="description" placeholder="A short description of what your mod does." oninput="updatePreview()"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="required" for="authors">Authors</label>
+          <div class="hint">Comma-separated (e.g. "Alice, Bob")</div>
+          <input type="text" id="authors" placeholder="YourName" oninput="updatePreview()">
+        </div>
+
+        <div class="form-group">
+          <label class="required">Tags</label>
+          <div class="tag-grid" id="tags-grid">
+            <label><input type="checkbox" value="gameplay-mod" onchange="updatePreview()"> gameplay-mod</label>
+            <label><input type="checkbox" value="challenge" onchange="updatePreview()"> challenge</label>
+            <label><input type="checkbox" value="speedrunning" onchange="updatePreview()"> speedrunning</label>
+            <label><input type="checkbox" value="rng" onchange="updatePreview()"> rng</label>
+            <label><input type="checkbox" value="custom-level" onchange="updatePreview()"> custom-level</label>
+            <label><input type="checkbox" value="texture-mod" onchange="updatePreview()"> texture-mod</label>
+            <label><input type="checkbox" value="model-replacement" onchange="updatePreview()"> model-replacement</label>
+            <label><input type="checkbox" value="multiplayer" onchange="updatePreview()"> multiplayer</label>
+            <label><input type="checkbox" value="practice" onchange="updatePreview()"> practice</label>
+          </div>
+        </div>
+
+        <hr class="section-divider">
+        <h2>GitHub Repository</h2>
+
+        <div class="form-group">
+          <label class="required" for="repo-owner">Repo Owner</label>
+          <div class="hint">GitHub username or org (e.g. "OpenGOAL-Mods")</div>
+          <input type="text" id="repo-owner" placeholder="YourGitHubUsername" oninput="updatePreview()">
+        </div>
+
+        <div class="form-group">
+          <label class="required" for="repo-name">Repo Name</label>
+          <input type="text" id="repo-name" placeholder="OG-MyCoolMod" oninput="updatePreview()">
+        </div>
+
+        <div class="form-group">
+          <label for="website-url">Website URL (optional)</label>
+          <div class="hint">Link to more info, README, etc.</div>
+          <input type="url" id="website-url" placeholder="https://github.com/you/your-mod/blob/main/README.md" oninput="updatePreview()">
+        </div>
+
+        <hr class="section-divider">
+        <h2>Art</h2>
+
+        <div class="form-group">
+          <label class="required" for="cover-art-url">Cover Art URL</label>
+          <div class="hint">Direct link to background image (recommended 16:9, from your repo's raw content)</div>
+          <input type="url" id="cover-art-url" placeholder="https://raw.githubusercontent.com/you/your-mod/main/ModImage.png" oninput="updatePreview()">
+        </div>
+
+        <div class="form-group">
+          <label class="required" for="thumbnail-art-url">Thumbnail Art URL</label>
+          <div class="hint">Direct link to smaller thumbnail image</div>
+          <input type="url" id="thumbnail-art-url" placeholder="https://raw.githubusercontent.com/you/your-mod/main/Thumbnail.png" oninput="updatePreview()">
+        </div>
+
+        <hr class="section-divider">
+        <h2>Optional Settings</h2>
+
+        <div class="form-group">
+          <label for="release-date">Release Date Override (optional)</label>
+          <div class="hint">If your mod was released before GitHub releases existed for it (YYYY-MM-DD)</div>
+          <input type="text" id="release-date" placeholder="2024-01-15" oninput="updatePreview()">
+        </div>
+
+        <div class="form-group">
+          <label for="ignore-versions">Ignore Versions (optional)</label>
+          <div class="hint">Comma-separated. Use "&lt;X.Y.Z" to ignore all before that version, or exact versions (e.g. "&lt;0.1.0, 0.2.5")</div>
+          <input type="text" id="ignore-versions" placeholder="<0.1.0" oninput="updatePreview()">
+        </div>
+
+        <div class="form-group">
+          <label for="external-link">External Link (optional)</label>
+          <div class="hint">Only for mods NOT distributed via GitHub releases (e.g. TeamRuns). Overrides repo fields.</div>
+          <input type="url" id="external-link" placeholder="https://example.com" oninput="updatePreview()">
+        </div>
+
+        <div class="form-group" id="supported-games-group" style="display:none;">
+          <label class="required">Supported Games (required for external mods)</label>
+          <div class="game-grid">
+            <label><input type="checkbox" value="jak1" onchange="updatePreview()"> Jak 1</label>
+            <label><input type="checkbox" value="jak2" onchange="updatePreview()"> Jak 2</label>
+            <label><input type="checkbox" value="jak3" onchange="updatePreview()"> Jak 3</label>
+          </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- SUBMIT -->
+        <div class="submit-section">
+          <h3 id="submit-heading">Submit New Mod</h3>
+          <p style="font-size:13px;">
+            This opens a pre-filled GitHub issue. Just click <b>"Submit new issue"</b> on GitHub
+            and a PR will be created automatically. A maintainer will review and merge it.
+            <br>You only need a free GitHub account.
+          </p>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="submit-btn" onclick="submitMod()">Submit on GitHub</button>
+            <button class="btn btn-danger" id="reset-btn" onclick="resetForm()" style="display:none;">Discard Changes</button>
+          </div>
+          <div id="status" class="status-msg"></div>
+        </div>
+      </div>
+
+      <!-- PREVIEW -->
+      <div class="preview-panel">
+        <div style="position:sticky;top:170px;">
+          <h2>Live Preview</h2>
+          <div class="preview-card" id="preview-card">
+            <div id="preview-cover-container">
+              <div class="preview-cover-placeholder">No cover art</div>
+            </div>
+            <div class="preview-body">
+              <div class="preview-title" id="preview-title">Mod Name</div>
+              <div class="preview-authors" id="preview-authors">by Author</div>
+              <div class="preview-desc" id="preview-desc">Your mod description will appear here.</div>
+              <div class="preview-tags" id="preview-tags"></div>
+            </div>
+          </div>
+
+          <h3 style="margin-top:24px;">YAML Preview</h3>
+          <div class="yaml-preview" id="yaml-preview">
+            # Fill in the form to see the generated config
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ─── Config ──────────────────────────────────────────────
+    const REPO_OWNER = "Zedb0T";
+    const REPO_NAME  = "jakmods.dev";
+    const CONFIG_PATH = "scripts/update-mod-source-data/config.yaml";
+
+    // ─── State ───────────────────────────────────────────────
+    let parsedMods = {};         // { modId: { ...fields } }
+    let editingModId = null;     // null = new mod, string = editing
+
+    const el = id => document.getElementById(id);
+
+    // ─── Init: load config from GitHub (unauthenticated) ────
+    async function loadConfig() {
+      const sel = el("mod-selector");
+      sel.innerHTML = '<option value="">Loading mods...</option>';
+
+      try {
+        const resp = await fetch(
+          `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${CONFIG_PATH}?ref=main`,
+          { headers: { Accept: "application/vnd.github.v3+json" } }
+        );
+        if (!resp.ok) throw new Error("HTTP " + resp.status);
+        const json = await resp.json();
+        const raw = decodeBase64UTF8(json.content);
+        const parsed = jsyaml.load(raw);
+        parsedMods = parsed.mods || {};
+        populateDropdown();
+      } catch (e) {
+        console.error("Failed to load config:", e);
+        sel.innerHTML = '<option value="">Failed to load — you can still add a new mod</option>';
+        populateDropdown();
+      }
+    }
+
+    function decodeBase64UTF8(b64) {
+      const bin = atob(b64.replace(/\n/g, ""));
+      const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+      return new TextDecoder().decode(bytes);
+    }
+
+    function populateDropdown() {
+      const sel = el("mod-selector");
+      sel.innerHTML = "";
+
+      const newOpt = document.createElement("option");
+      newOpt.value = "";
+      newOpt.textContent = "+ New Mod";
+      sel.appendChild(newOpt);
+
+      const ids = Object.keys(parsedMods).sort((a, b) => {
+        const na = (parsedMods[a].display_name || a).toLowerCase();
+        const nb = (parsedMods[b].display_name || b).toLowerCase();
+        return na.localeCompare(nb);
+      });
+
+      for (const id of ids) {
+        const opt = document.createElement("option");
+        opt.value = id;
+        opt.textContent = `${parsedMods[id].display_name || id}  (${id})`;
+        sel.appendChild(opt);
+      }
+    }
+
+    // ─── Dropdown change ────────────────────────────────────
+    function onModSelected() {
+      const modId = el("mod-selector").value;
+      if (!modId) {
+        editingModId = null;
+        resetFormFields();
+        el("mod-id").readOnly = false;
+        el("mode-badge").textContent = "NEW";
+        el("mode-badge").className = "mode-badge new-mode";
+        el("submit-heading").textContent = "Submit New Mod";
+        el("submit-btn").textContent = "Submit on GitHub";
+        el("reset-btn").style.display = "none";
+        updatePreview();
+        return;
+      }
+
+      editingModId = modId;
+      const mod = parsedMods[modId];
+      fillFormFromMod(modId, mod);
+      el("mod-id").readOnly = true;
+      el("mode-badge").textContent = "EDIT";
+      el("mode-badge").className = "mode-badge edit-mode";
+      el("submit-heading").textContent = `Edit: ${mod.display_name || modId}`;
+      el("submit-btn").textContent = "Submit Edit on GitHub";
+      el("reset-btn").style.display = "inline-block";
+      updatePreview();
+    }
+
+    function fillFormFromMod(modId, mod) {
+      el("mod-id").value = modId;
+      el("display-name").value = mod.display_name || "";
+      el("description").value = mod.description || "";
+      el("authors").value = (mod.authors || []).join(", ");
+      el("repo-owner").value = mod.repo_owner || "";
+      el("repo-name").value = mod.repo_name || "";
+      el("website-url").value = mod.website_url || "";
+      el("cover-art-url").value = mod.cover_art_url || "";
+      el("thumbnail-art-url").value = mod.thumbnail_art_url || "";
+      el("release-date").value = mod.release_date_override || "";
+      el("ignore-versions").value = (mod.ignore_versions || []).join(", ");
+      el("external-link").value = mod.external_link || "";
+
+      document.querySelectorAll("#tags-grid input").forEach(cb => {
+        cb.checked = (mod.tags || []).includes(cb.value);
+      });
+
+      if (mod.external_link) {
+        el("supported-games-group").style.display = "block";
+        document.querySelectorAll("#supported-games-group input").forEach(cb => {
+          cb.checked = (mod.supported_games || []).includes(cb.value);
+        });
+      } else {
+        el("supported-games-group").style.display = "none";
+      }
+    }
+
+    function resetFormFields() {
+      ["mod-id", "display-name", "description", "authors",
+       "repo-owner", "repo-name", "website-url",
+       "cover-art-url", "thumbnail-art-url", "release-date",
+       "ignore-versions", "external-link"].forEach(id => el(id).value = "");
+      document.querySelectorAll("#tags-grid input, #supported-games-group input")
+        .forEach(cb => cb.checked = false);
+      el("supported-games-group").style.display = "none";
+      el("status").className = "status-msg";
+    }
+
+    function resetForm() {
+      if (editingModId) {
+        fillFormFromMod(editingModId, parsedMods[editingModId]);
+      } else {
+        resetFormFields();
+      }
+      updatePreview();
+      el("status").className = "status-msg";
+    }
+
+    // ─── External link toggle ───────────────────────────────
+    el("external-link").addEventListener("input", () => {
+      el("supported-games-group").style.display =
+        el("external-link").value.trim() ? "block" : "none";
+      updatePreview();
+    });
+
+    // ─── Form data / preview ────────────────────────────────
+    function getFormData() {
+      const tags = [...document.querySelectorAll("#tags-grid input:checked")].map(c => c.value);
+      const supportedGames = [...document.querySelectorAll("#supported-games-group input:checked")].map(c => c.value);
+      return {
+        modId:          el("mod-id").value.trim(),
+        displayName:    el("display-name").value.trim(),
+        description:    el("description").value.trim(),
+        authors:        el("authors").value.split(",").map(a => a.trim()).filter(Boolean),
+        tags,
+        repoOwner:      el("repo-owner").value.trim(),
+        repoName:       el("repo-name").value.trim(),
+        websiteUrl:     el("website-url").value.trim(),
+        coverArtUrl:    el("cover-art-url").value.trim(),
+        thumbnailArtUrl:el("thumbnail-art-url").value.trim(),
+        releaseDate:    el("release-date").value.trim(),
+        ignoreVersions: el("ignore-versions").value.split(",").map(v => v.trim()).filter(Boolean),
+        externalLink:   el("external-link").value.trim(),
+        supportedGames,
+      };
+    }
+
+    function updatePreview() {
+      const d = getFormData();
+
+      el("preview-title").textContent = d.displayName || "Mod Name";
+      el("preview-authors").textContent = d.authors.length ? "by " + d.authors.join(", ") : "by Author";
+      el("preview-desc").textContent = d.description || "Your mod description will appear here.";
+
+      const cc = el("preview-cover-container");
+      if (d.coverArtUrl) {
+        cc.innerHTML = `<img class="preview-cover" src="${esc(d.coverArtUrl)}" alt="Cover art" onerror="this.outerHTML='<div class=\\'preview-cover-placeholder\\'>Failed to load image</div>'">`;
+      } else {
+        cc.innerHTML = '<div class="preview-cover-placeholder">No cover art</div>';
+      }
+
+      el("preview-tags").innerHTML =
+        d.tags.map(t => `<span class="preview-tag">${esc(t)}</span>`).join("");
+
+      el("yaml-preview").textContent = buildYaml(d);
+    }
+
+    function esc(s) {
+      const d = document.createElement("div");
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    function yq(s) {
+      if (!s) return '""';
+      if (/[:#\[\]{}&*!|>'"%@`,?]/.test(s) || s.includes("\n"))
+        return '"' + s.replace(/\\/g, "\\\\").replace(/"/g, '\\"') + '"';
+      return '"' + s + '"';
+    }
+
+    function buildYaml(d) {
+      if (!d.modId) return "# Fill in the Mod ID to see the generated config";
+      let y = "";
+
+      if (d.externalLink) {
+        y += `  ${d.modId}:\n`;
+        y += `    external_link: ${yq(d.externalLink)}\n`;
+        if (d.releaseDate) y += `    release_date_override: ${yq(d.releaseDate)}\n`;
+        y += `    display_name: ${yq(d.displayName)}\n`;
+        y += `    description: ${yq(d.description)}\n`;
+        y += `    authors: [${d.authors.map(yq).join(", ")}]\n`;
+        if (d.supportedGames.length)
+          y += `    supported_games: [${d.supportedGames.map(yq).join(", ")}]\n`;
+        y += `    tags: [${d.tags.map(yq).join(", ")}]\n`;
+        y += `    cover_art_url: ${yq(d.coverArtUrl)}\n`;
+        y += `    thumbnail_art_url: ${yq(d.thumbnailArtUrl)}\n`;
+      } else {
+        y += `  ${d.modId}:\n`;
+        y += `    repo_owner: ${yq(d.repoOwner)}\n`;
+        y += `    repo_name: ${yq(d.repoName)}\n`;
+        y += `    url: "https://github.com/${d.repoOwner}/${d.repoName}"\n`;
+        if (d.releaseDate)
+          y += `    release_date_override: ${yq(d.releaseDate)}\n`;
+        if (d.ignoreVersions.length) {
+          y += `    ignore_versions:\n`;
+          d.ignoreVersions.forEach(v => { y += `      - ${yq(v)}\n`; });
+        }
+        y += `    display_name: ${yq(d.displayName)}\n`;
+        y += `    description: ${yq(d.description)}\n`;
+        y += `    authors: [${d.authors.map(yq).join(", ")}]\n`;
+        y += `    tags: [${d.tags.map(yq).join(", ")}]\n`;
+        if (d.websiteUrl)
+          y += `    website_url: ${yq(d.websiteUrl)}\n`;
+        y += `    cover_art_url: ${yq(d.coverArtUrl)}\n`;
+        y += `    thumbnail_art_url: ${yq(d.thumbnailArtUrl)}\n`;
+      }
+      return y;
+    }
+
+    // ─── Validation ─────────────────────────────────────────
+    function validate(d) {
+      if (!d.modId) return "Mod ID is required.";
+      if (d.modId.length > 1 && !/^[a-z0-9][a-z0-9\-]*[a-z0-9]$/.test(d.modId))
+        return "Mod ID must be lowercase letters, numbers, and hyphens only.";
+      if (!editingModId && parsedMods[d.modId])
+        return `Mod ID "${d.modId}" already exists. Select it from the dropdown to edit it.`;
+      if (!d.displayName) return "Display Name is required.";
+      if (!d.description) return "Description is required.";
+      if (!d.authors.length) return "At least one author is required.";
+      if (!d.tags.length) return "At least one tag is required.";
+      if (!d.externalLink) {
+        if (!d.repoOwner) return "Repo Owner is required.";
+        if (!d.repoName) return "Repo Name is required.";
+      } else {
+        if (!d.supportedGames.length) return "Supported Games is required for external mods.";
+      }
+      if (!d.coverArtUrl) return "Cover Art URL is required.";
+      if (!d.thumbnailArtUrl) return "Thumbnail Art URL is required.";
+      return null;
+    }
+
+    // ─── Submit via GitHub Issue (no token needed) ──────────
+    function setStatus(msg, type) {
+      const s = el("status");
+      s.textContent = msg;
+      s.className = "status-msg " + type;
+    }
+
+    function submitMod() {
+      const d = getFormData();
+
+      const err = validate(d);
+      if (err) { setStatus(err, "error"); return; }
+
+      const yaml = buildYaml(d);
+      const isEdit = !!editingModId;
+      const action = isEdit ? "Update" : "Add";
+
+      const title = `${action} mod: ${d.displayName}`;
+
+      let body = isEdit
+        ? `## Mod Update Request\n\n`
+        : `## New Mod Submission\n\n`;
+
+      body += `| Field | Value |\n|---|---|\n`;
+      body += `| **Mod ID** | \`${d.modId}\` |\n`;
+      body += `| **Display Name** | ${d.displayName} |\n`;
+      body += `| **Authors** | ${d.authors.join(", ")} |\n`;
+      body += `| **Tags** | ${d.tags.join(", ")} |\n`;
+
+      if (d.externalLink) {
+        body += `| **External Link** | ${d.externalLink} |\n`;
+        body += `| **Supported Games** | ${d.supportedGames.join(", ")} |\n`;
+      } else {
+        body += `| **Repo** | [${d.repoOwner}/${d.repoName}](https://github.com/${d.repoOwner}/${d.repoName}) |\n`;
+      }
+
+      if (d.websiteUrl) body += `| **Website** | ${d.websiteUrl} |\n`;
+      if (d.releaseDate) body += `| **Release Date** | ${d.releaseDate} |\n`;
+      if (d.ignoreVersions.length) body += `| **Ignore Versions** | ${d.ignoreVersions.join(", ")} |\n`;
+      body += `| **Cover Art** | ${d.coverArtUrl} |\n`;
+      body += `| **Thumbnail** | ${d.thumbnailArtUrl} |\n`;
+
+      body += `\n### config.yaml entry\n\n`;
+      body += `Add this to \`scripts/update-mod-source-data/config.yaml\` under the \`mods:\` section`;
+      if (isEdit) body += ` (replacing the existing \`${editingModId}\` entry)`;
+      body += `:\n\n`;
+      body += `\`\`\`yaml\n${yaml}\`\`\`\n\n`;
+      body += `---\n*Submitted via [jakmods.dev/submit](https://jakmods.dev/submit.html)*`;
+
+      // Build GitHub new-issue URL
+      const params = new URLSearchParams({
+        title,
+        body,
+        labels: "mod-submission",
+      });
+      const issueUrl = `https://github.com/${REPO_OWNER}/${REPO_NAME}/issues/new?${params}`;
+
+      // Open in new tab
+      window.open(issueUrl, "_blank");
+
+      setStatus("GitHub opened in a new tab — click 'Submit new issue' there to finish!", "success");
+    }
+
+    // ─── Boot ───────────────────────────────────────────────
+    loadConfig();
+    updatePreview();
+  </script>
+</body>
+</html>
