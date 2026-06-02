@@ -1,3 +1,17 @@
 metadata:
   name: "PendingJakMods"
-mods: {}
+mods:
+  my-cool-mod-321321:
+    repo_owner: "mfOliveira19"
+    repo_name: "GordonAndDaxter-Mod"
+    url: "https://github.com/mfOliveira19/GordonAndDaxter-Mod"
+    ignore_versions:
+      - "<0.1.0"
+    display_name: "Gordon And Daxter 2"
+    description: "A short description of what your mod does. This shows up in the launcher."
+    authors: ["Zed"]
+    tags: ["gameplay-mod", "challenge"]
+    website_url: "https://github.com/YourGitHubUsername/OG-MyCoolMod/blob/main/README.md"
+    cover_art_url: "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png"
+    thumbnail_art_url: "https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Speedrun-Practice/main/ModImage.png"
+
