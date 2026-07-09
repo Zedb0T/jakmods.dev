@@ -9,3 +9,16 @@
   height: 200px;
   width: 200px;
 }
+
+/* responsive video embed: never wider than the viewport, keeps 16:9 */
+.videoWrap {
+  width: 100%;
+  max-width: 560px;
+}
+
+.videoWrap iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
