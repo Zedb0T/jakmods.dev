@@ -68,21 +68,72 @@ function nameHue(name) {
   return Math.abs(hash) % 360;
 }
 
-// tries each candidate URL in order, then falls back to a gradient placeholder
-function ModImage({ mod }) {
-  const [imgIdx, setImgIdx] = React.useState(0);
-  const hue = nameHue(mod.name);
+// Images load one at a time through a global queue so we don't hit
+// raw.githubusercontent.com with ~40 parallel requests and trip its rate
+// limiting. Results are cached so switching views doesn't re-fetch.
+const resolvedImageCache = new Map(); // candidates key -> working url or null
+let imageQueue = Promise.resolve();
 
-  if (imgIdx < mod.images.length) {
-    return (
-      <img
-        src={mod.images[imgIdx]}
-        alt={mod.name}
-        loading="lazy"
-        onError={() => setImgIdx(imgIdx + 1)}
-      />
-    );
+function preloadImage(url) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = url;
+  });
+}
+
+// resolves to the first candidate URL that loads, or null if none do
+function resolveModImage(candidates) {
+  const key = candidates.join('|');
+  if (resolvedImageCache.has(key)) {
+    return Promise.resolve(resolvedImageCache.get(key));
   }
+  const result = imageQueue.then(async () => {
+    if (resolvedImageCache.has(key)) return resolvedImageCache.get(key);
+    for (const url of candidates) {
+      if (await preloadImage(url)) {
+        resolvedImageCache.set(key, url);
+        return url;
+      }
+    }
+    resolvedImageCache.set(key, null);
+    return null;
+  });
+  imageQueue = result.then(
+    () => {},
+    () => {}
+  );
+  return result;
+}
+
+// shows a skeleton while queued, the image once resolved, or a gradient
+// placeholder when no candidate URL works
+function ModImage({ mod }) {
+  // undefined = still loading, null = no working image, string = url
+  const [src, setSrc] = React.useState(() => {
+    const key = mod.images.join('|');
+    return resolvedImageCache.has(key) ? resolvedImageCache.get(key) : undefined;
+  });
+
+  React.useEffect(() => {
+    if (src !== undefined) return undefined;
+    let cancelled = false;
+    resolveModImage(mod.images).then((url) => {
+      if (!cancelled) setSrc(url);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (src) {
+    return <img src={src} alt={mod.name} />;
+  }
+  if (src === undefined) {
+    return <div className={styles.imagePending} />;
+  }
+  const hue = nameHue(mod.name);
   return (
     <div
       className={styles.placeholder}
