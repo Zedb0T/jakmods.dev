@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import {FeaturedMods} from '@site/src/components/modlist_utils';
 import styles from './styles.module.css';
 
 // const FeatureList = [
@@ -101,6 +102,9 @@ export default function HomepageFeatures() {
         <p>All mods are installed and ran at your own risk. You can find the repository containing the source code for any mod in our list <a href="https://github.com/OpenGOAL-Mods/jakmods.dev/blob/main/scripts/update-mod-source-data/config.yaml">here</a>.</p>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/r9E01A3BlEA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         <p></p>
+        <h1>Featured Mods</h1>
+        <FeaturedMods count={3} />
+        <p><a href="docs/category/mod-lists">Browse the full mod list →</a></p>
       </div>
     </section>
   );

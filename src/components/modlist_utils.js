@@ -258,18 +258,9 @@ function ModTable({ mods }) {
 
 const VIEW_STORAGE_KEY = 'jakmods-modlist-view';
 
-function ModListTable(props) {
-  const [data, setData] = React.useState(null);
-  const [query, setQuery] = React.useState('');
+// cards/table preference, shared across every mod list on the site
+function useViewPreference() {
   const [view, setView] = React.useState('cards');
-  const modsUrl = useBaseUrl('/mods.json'); // file lives in the static folder
-
-  React.useEffect(() => {
-    fetch(modsUrl)
-      .then((res) => res.json())
-      .then((jsonData) => setData(jsonData))
-      .catch((error) => console.error('Error fetching data:', error));
-  }, [modsUrl]);
 
   // read saved preference after mount so SSR markup stays consistent
   React.useEffect(() => {
@@ -281,6 +272,45 @@ function ModListTable(props) {
     setView(next);
     window.localStorage.setItem(VIEW_STORAGE_KEY, next);
   };
+
+  return [view, switchView];
+}
+
+function ViewToggle({ view, onSwitch }) {
+  return (
+    <div className={styles.viewToggle} role="group" aria-label="View style">
+      <button
+        type="button"
+        className={view === 'cards' ? styles.viewButtonActive : styles.viewButton}
+        aria-pressed={view === 'cards'}
+        onClick={() => onSwitch('cards')}
+      >
+        Cards
+      </button>
+      <button
+        type="button"
+        className={view === 'table' ? styles.viewButtonActive : styles.viewButton}
+        aria-pressed={view === 'table'}
+        onClick={() => onSwitch('table')}
+      >
+        Table
+      </button>
+    </div>
+  );
+}
+
+function ModListTable(props) {
+  const [data, setData] = React.useState(null);
+  const [query, setQuery] = React.useState('');
+  const [view, switchView] = useViewPreference();
+  const modsUrl = useBaseUrl('/mods.json'); // file lives in the static folder
+
+  React.useEffect(() => {
+    fetch(modsUrl)
+      .then((res) => res.json())
+      .then((jsonData) => setData(jsonData))
+      .catch((error) => console.error('Error fetching data:', error));
+  }, [modsUrl]);
 
   if (!data) {
     return <div>Loading data...</div>;
@@ -311,24 +341,7 @@ function ModListTable(props) {
         <span className={styles.count}>
           {filtered.length} mod{filtered.length === 1 ? '' : 's'}
         </span>
-        <div className={styles.viewToggle} role="group" aria-label="View style">
-          <button
-            type="button"
-            className={view === 'cards' ? styles.viewButtonActive : styles.viewButton}
-            aria-pressed={view === 'cards'}
-            onClick={() => switchView('cards')}
-          >
-            Cards
-          </button>
-          <button
-            type="button"
-            className={view === 'table' ? styles.viewButtonActive : styles.viewButton}
-            aria-pressed={view === 'table'}
-            onClick={() => switchView('table')}
-          >
-            Table
-          </button>
-        </div>
+        <ViewToggle view={view} onSwitch={switchView} />
       </div>
       {filtered.length > 0 ? (
         view === 'table' ? (
@@ -342,6 +355,61 @@ function ModListTable(props) {
         )
       ) : (
         <div className={styles.empty}>No mods match your search.</div>
+      )}
+    </div>
+  );
+}
+
+// shows a few randomly chosen mods (across all games) as cards, e.g. on the homepage
+export function FeaturedMods({ count = 3 }) {
+  const [data, setData] = React.useState(null);
+  const [view, switchView] = useViewPreference();
+  const modsUrl = useBaseUrl('/mods.json');
+
+  React.useEffect(() => {
+    fetch(modsUrl)
+      .then((res) => res.json())
+      .then((jsonData) => setData(jsonData))
+      .catch((error) => console.error('Error fetching data:', error));
+  }, [modsUrl]);
+
+  const featured = React.useMemo(() => {
+    if (!data) return [];
+    const seen = new Set();
+    const all = [];
+    for (const game of ['jak1', 'jak2', 'jak3']) {
+      for (const mod of collectMods(game, data)) {
+        if (!seen.has(mod.id)) {
+          seen.add(mod.id);
+          all.push(mod);
+        }
+      }
+    }
+    // Fisher-Yates shuffle, then take the first few
+    for (let i = all.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [all[i], all[j]] = [all[j], all[i]];
+    }
+    return all.slice(0, count);
+  }, [data, count]);
+
+  if (featured.length === 0) {
+    return null;
+  }
+
+  return (
+    <div>
+      <div className={styles.toolbar}>
+        <ViewToggle view={view} onSwitch={switchView} />
+      </div>
+      {view === 'table' ? (
+        <ModTable mods={featured} />
+      ) : (
+        <div className={styles.grid}>
+          {featured.map((mod) => (
+            <ModCard key={mod.id} mod={mod} />
+          ))}
+        </div>
       )}
     </div>
   );
