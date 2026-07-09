@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "site",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "site", "-l", "3456"],
-      "port": 3456
+      "name": "docusaurus",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": ["start"],
+      "port": 3000
     }
   ]
 }

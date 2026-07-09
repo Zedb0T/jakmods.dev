@@ -1,148 +1,297 @@
 import React from 'react';
 import Parser from 'html-react-parser';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import styles from './modlist.module.css';
 
-function BuildTable(game, data) {
-  // parse mods into dict from JSON
-  let mods = [];
-  for (let mod_id in data.mods) {
-    let mod = data.mods[mod_id];
+const PLATFORM_LABELS = {
+  windows: 'Windows',
+  linux: 'Linux',
+  macos: 'macOS',
+};
 
-    // skip these
-    if (mod["externalLink"]) {continue;}
+function collectMods(game, data) {
+  const mods = [];
+  for (const modId in data.mods) {
+    const mod = data.mods[modId];
+
+    if (mod.externalLink) continue;
+
+    const games = [...new Set(mod.supportedGames || [])];
+    if (!games.includes(game)) continue;
+
+    const tags = [...(mod.tags || [])].sort();
+    if (tags.includes('hidden') || tags.includes('external')) continue;
+
+    const cfg = (mod.perGameConfig && mod.perGameConfig[game]) || {};
 
     let downloads = 0;
-    
-    // dedupe games
-    let games = [...new Set(mod["supportedGames"])];
-
-    console.log(mod["displayName"], game, games, games.indexOf(game));
-
-    // only include mods for requested game
-    if (games.indexOf(game) !== -1) {
-      let platforms = [];
-      for (let version of mod["versions"]) {
-        for (let platform in version["assets"]) {
-          if (version["assets"][platform]) {
-            platforms.push(platform);
-          }
-        }
-        for (let platform in version["assetDownloadCounts"]) {
-          if (version["assetDownloadCounts"][platform]) {
-            downloads += parseInt(version["assetDownloadCounts"][platform], 10);
-          }
-        }
+    const platforms = new Set();
+    for (const version of mod.versions || []) {
+      for (const platform in version.assets || {}) {
+        if (version.assets[platform]) platforms.add(platform);
       }
-
-      
-      let releaseDate = mod["perGameConfig"][game]["releaseDate"];
-      mods.push([
-        mod["perGameConfig"][game]["displayName"] || mod["displayName"],
-        mod["perGameConfig"][game]["description"] || mod["description"],
-        mod["authors"].join(", "),
-        mod["tags"].sort().join(", "),
-        [...new Set(platforms)].join(", "), // dedupe
-        releaseDate.substring(0,10),
-        downloads,
-        mod["websiteUrl"], 
-        game
-      ]);
-    }
-  }
-
-  console.log(mods);
-
-  // add blank tables
-  let table = document.createElement("table");
-  table.style.width="100%";
-  // let table = React.createElement("table", { style: {width: "100%"}});
-  // console.log(table);
-  let row = table.insertRow();
-  let cell = row.insertCell();
-  cell.style.width="15%"
-  cell.innerHTML = "<b>Name</b>";
-
-  cell = row.insertCell();
-  cell.style.width = "40%";
-  cell.innerHTML = "<b>Description</b>";
-
-  cell = row.insertCell();
-  cell.style.width="10%";
-  cell.innerHTML = "<b>Contributors</b>";
-  
-  cell = row.insertCell();
-  cell.style.width="15%";
-  cell.innerHTML = "<b>Tags</b>";
-
-  cell = row.insertCell();
-  cell.style.width="10%";
-  cell.innerHTML = "<b>Platforms</b>";
-
-  cell = row.insertCell();
-  cell.style.width="5%";
-  cell.innerHTML = "<b>Released</b>";
-  
-  cell = row.insertCell();
-  cell.style.width="5%";
-  cell.innerHTML = "<b>Downloads</b>";
-
-  cell = row.insertCell();
-  cell.style.width="5%";
-  cell.innerHTML = "<b>Website</b>";
-
-  // cell = row.insertCell();
-  // cell.style.width="5%";
-  // cell.innerHTML = "<b>Video(s)</b>";
-
-  // sort by release date desc (recent at top)
-  mods = mods.sort((a, b) => b[5].localeCompare(a[5]))
-  
-  for (let modIdx in mods) {
-    let mod = mods[modIdx];
-
-    if (mod[3].indexOf("hidden") >= 0 || mod[3].indexOf("external") >= 0) {
-      // skip hidden/external link mods
-      continue;
-    }
-
-    if (table) {
-      row = table.insertRow(); 
-      row.insertCell().innerHTML = mod[0];  // name
-      row.insertCell().innerHTML = mod[1];  // desc
-      row.insertCell().innerHTML = mod[2];  // contributors
-      row.insertCell().innerHTML = mod[3];  // tags
-      row.insertCell().innerHTML = mod[4];  // platforms
-      row.insertCell().innerHTML = mod[5];  // release date
-      row.insertCell().innerHTML = mod[6];  // downloads
-      if (mod[7] && mod[7] != "") {
-        row.insertCell().innerHTML = "<a href=\"" + mod[7] + "\">Website</a>";  // website
-      } else {
-        row.insertCell().innerHTML = "N/A";
+      for (const platform in version.assetDownloadCounts || {}) {
+        const count = parseInt(version.assetDownloadCounts[platform], 10);
+        if (!isNaN(count)) downloads += count;
       }
     }
+
+    mods.push({
+      id: modId,
+      name: cfg.displayName || mod.displayName || modId,
+      description: cfg.description || mod.description || '',
+      authors: mod.authors || [],
+      tags,
+      platforms: [...platforms],
+      releaseDate: (cfg.releaseDate || '').substring(0, 10),
+      downloads,
+      websiteUrl: mod.websiteUrl,
+      // some cover art URLs are dead; card falls back through this list
+      images: [
+        ...new Set(
+          [cfg.coverArtUrl, mod.coverArtUrl, cfg.thumbnailArtUrl, mod.thumbnailArtUrl].filter(Boolean)
+        ),
+      ],
+    });
   }
 
-  return table.outerHTML;
+  // recent releases first
+  return mods.sort((a, b) => b.releaseDate.localeCompare(a.releaseDate));
 }
 
+// stable per-mod hue so placeholder cards don't all look identical
+function nameHue(name) {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = (hash * 31 + name.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash) % 360;
+}
+
+// tries each candidate URL in order, then falls back to a gradient placeholder
+function ModImage({ mod }) {
+  const [imgIdx, setImgIdx] = React.useState(0);
+  const hue = nameHue(mod.name);
+
+  if (imgIdx < mod.images.length) {
+    return (
+      <img
+        src={mod.images[imgIdx]}
+        alt={mod.name}
+        loading="lazy"
+        onError={() => setImgIdx(imgIdx + 1)}
+      />
+    );
+  }
+  return (
+    <div
+      className={styles.placeholder}
+      style={{ background: `linear-gradient(135deg, hsl(${hue}, 55%, 45%), hsl(${(hue + 40) % 360}, 60%, 30%))` }}
+    >
+      {mod.name.charAt(0).toUpperCase()}
+    </div>
+  );
+}
+
+function ModCard({ mod }) {
+  const image = <ModImage mod={mod} />;
+
+  return (
+    <article className={styles.card}>
+      <div className={styles.imageWrap}>
+        {mod.websiteUrl ? (
+          <a href={mod.websiteUrl} target="_blank" rel="noopener noreferrer">
+            {image}
+          </a>
+        ) : (
+          image
+        )}
+        <div className={styles.platforms}>
+          {mod.platforms.map((platform) => (
+            <span key={platform} className={styles.platform}>
+              {PLATFORM_LABELS[platform] || platform}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div className={styles.body}>
+        <div className={styles.titleRow}>
+          <h3 className={styles.title}>
+            {mod.websiteUrl ? (
+              <a href={mod.websiteUrl} target="_blank" rel="noopener noreferrer">
+                {mod.name}
+              </a>
+            ) : (
+              mod.name
+            )}
+          </h3>
+          <span className={styles.date}>{mod.releaseDate}</span>
+        </div>
+        {mod.authors.length > 0 && <div className={styles.byline}>by {mod.authors.join(', ')}</div>}
+        <p className={styles.desc}>{Parser(mod.description)}</p>
+        {mod.tags.length > 0 && (
+          <div className={styles.tags}>
+            {mod.tags.map((tag) => (
+              <span key={tag} className={styles.tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+        <div className={styles.footer}>
+          <span className={styles.downloads} title="Total downloads">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-8 2h16v2H4v-2z" />
+            </svg>
+            {mod.downloads.toLocaleString()}
+          </span>
+          {mod.websiteUrl && (
+            <a className={styles.website} href={mod.websiteUrl} target="_blank" rel="noopener noreferrer">
+              Website ↗
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ModTable({ mods }) {
+  return (
+    <div className={styles.tableWrap}>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Contributors</th>
+            <th>Tags</th>
+            <th>Platforms</th>
+            <th>Released</th>
+            <th>Downloads</th>
+            <th>Website</th>
+          </tr>
+        </thead>
+        <tbody>
+          {mods.map((mod) => (
+            <tr key={mod.id}>
+              <td className={styles.tableImageCell}>
+                <div className={styles.tableImage}>
+                  <ModImage mod={mod} />
+                </div>
+              </td>
+              <td className={styles.tableName}>{mod.name}</td>
+              <td>{Parser(mod.description)}</td>
+              <td>{mod.authors.join(', ')}</td>
+              <td>{mod.tags.join(', ')}</td>
+              <td>{mod.platforms.map((p) => PLATFORM_LABELS[p] || p).join(', ')}</td>
+              <td className={styles.tableNowrap}>{mod.releaseDate}</td>
+              <td>{mod.downloads.toLocaleString()}</td>
+              <td>
+                {mod.websiteUrl ? (
+                  <a href={mod.websiteUrl} target="_blank" rel="noopener noreferrer">
+                    Website
+                  </a>
+                ) : (
+                  'N/A'
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+const VIEW_STORAGE_KEY = 'jakmods-modlist-view';
+
 function ModListTable(props) {
-  const { siteConfig } = useDocusaurusContext();
   const [data, setData] = React.useState(null);
+  const [query, setQuery] = React.useState('');
+  const [view, setView] = React.useState('cards');
 
   React.useEffect(() => {
-      fetch('/mods.json') // Assumes this file is in the static folder
-        .then(res => res.json())
-        .then(jsonData => setData(jsonData))
-        .catch(error => console.error('Error fetching data:', error));
-    }, []);
+    fetch('/mods.json') // Assumes this file is in the static folder
+      .then((res) => res.json())
+      .then((jsonData) => setData(jsonData))
+      .catch((error) => console.error('Error fetching data:', error));
+  }, []);
+
+  // read saved preference after mount so SSR markup stays consistent
+  React.useEffect(() => {
+    const saved = window.localStorage.getItem(VIEW_STORAGE_KEY);
+    if (saved === 'cards' || saved === 'table') setView(saved);
+  }, []);
+
+  const switchView = (next) => {
+    setView(next);
+    window.localStorage.setItem(VIEW_STORAGE_KEY, next);
+  };
 
   if (!data) {
     return <div>Loading data...</div>;
   }
 
-  console.log(data);
+  const mods = collectMods(props.game, data);
 
-  return <div>{Parser(BuildTable(props.game, data))}</div>;
+  const q = query.trim().toLowerCase();
+  const filtered = q
+    ? mods.filter((mod) =>
+        [mod.name, mod.description, mod.authors.join(' '), mod.tags.join(' ')]
+          .join(' ')
+          .toLowerCase()
+          .includes(q)
+      )
+    : mods;
+
+  return (
+    <div>
+      <div className={styles.toolbar}>
+        <input
+          type="search"
+          className={styles.search}
+          placeholder="Search mods, tags, authors..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <span className={styles.count}>
+          {filtered.length} mod{filtered.length === 1 ? '' : 's'}
+        </span>
+        <div className={styles.viewToggle} role="group" aria-label="View style">
+          <button
+            type="button"
+            className={view === 'cards' ? styles.viewButtonActive : styles.viewButton}
+            aria-pressed={view === 'cards'}
+            onClick={() => switchView('cards')}
+          >
+            Cards
+          </button>
+          <button
+            type="button"
+            className={view === 'table' ? styles.viewButtonActive : styles.viewButton}
+            aria-pressed={view === 'table'}
+            onClick={() => switchView('table')}
+          >
+            Table
+          </button>
+        </div>
+      </div>
+      {filtered.length > 0 ? (
+        view === 'table' ? (
+          <ModTable mods={filtered} />
+        ) : (
+          <div className={styles.grid}>
+            {filtered.map((mod) => (
+              <ModCard key={mod.id} mod={mod} />
+            ))}
+          </div>
+        )
+      ) : (
+        <div className={styles.empty}>No mods match your search.</div>
+      )}
+    </div>
+  );
 }
 
 export default ModListTable;
