@@ -292,7 +292,8 @@
 .tableImage img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* stretch to show the whole image; cover would crop away context */
+  object-fit: fill;
   display: block;
 }
 
