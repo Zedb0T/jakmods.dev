@@ -8,6 +8,11 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+// When built in CI on a fork, serve from https://<owner>.github.io/<repo>/ so
+// Pages previews work; the upstream repo keeps the custom domain at /.
+const [ghOwner, ghRepo] = (process.env.GITHUB_REPOSITORY || '').split('/');
+const isFork = !!ghOwner && ghOwner !== 'OpenGOAL-Mods';
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'JakMods.dev',
@@ -20,10 +25,10 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://jakmods.dev',
+  url: isFork ? `https://${ghOwner.toLowerCase()}.github.io` : 'https://jakmods.dev',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: isFork ? `/${ghRepo}/` : '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.

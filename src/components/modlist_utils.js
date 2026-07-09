@@ -1,5 +1,6 @@
 import React from 'react';
 import Parser from 'html-react-parser';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './modlist.module.css';
 
 const PLATFORM_LABELS = {
@@ -210,13 +211,14 @@ function ModListTable(props) {
   const [data, setData] = React.useState(null);
   const [query, setQuery] = React.useState('');
   const [view, setView] = React.useState('cards');
+  const modsUrl = useBaseUrl('/mods.json'); // file lives in the static folder
 
   React.useEffect(() => {
-    fetch('/mods.json') // Assumes this file is in the static folder
+    fetch(modsUrl)
       .then((res) => res.json())
       .then((jsonData) => setData(jsonData))
       .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+  }, [modsUrl]);
 
   // read saved preference after mount so SSR markup stays consistent
   React.useEffect(() => {
