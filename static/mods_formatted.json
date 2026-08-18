@@ -8182,7 +8182,7 @@
             "macos": "https://github.com/gratefulforest/Cratetopia/releases/download/v3.0.0/macos-intel-v3.0.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 3,
+            "windows": 4,
             "linux": 0,
             "macos": 0
           }
@@ -10736,7 +10736,7 @@
           "assetDownloadCounts": {
             "windows": 280,
             "linux": 22,
-            "macos": 83
+            "macos": 84
           }
         },
         {
@@ -11863,5 +11863,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-18T20:47:32.979Z"
+  "lastUpdated": "2026-08-18T21:14:17.404Z"
 }
