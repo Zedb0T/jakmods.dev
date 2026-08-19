@@ -4442,7 +4442,7 @@
           },
           "assetDownloadCounts": {
             "windows": 31,
-            "linux": 5,
+            "linux": 6,
             "macos": 0
           }
         },
@@ -5756,7 +5756,7 @@
             "macos": "https://github.com/RealOfficialKraken/Jak1-Fish/releases/download/v1.2.3/macos-intel-v1.2.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 13,
+            "windows": 15,
             "linux": 1,
             "macos": 0
           }
@@ -6454,7 +6454,7 @@
             "macos": "https://github.com/RealOfficialKraken/updated-HeroModePlus/releases/download/v1.0.1/macos-intel-v1.0.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 338,
+            "windows": 340,
             "linux": 35,
             "macos": 1
           }
@@ -8043,7 +8043,7 @@
             "macos": "https://github.com/CraiyDev/Better-Dark-Jak/releases/download/v0.0.2/macos-intel-v0.0.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1915,
+            "windows": 1916,
             "linux": 352,
             "macos": 26
           }
@@ -9180,7 +9180,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Obama/releases/download/v0.0.1/macos-intel-v0.0.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 861,
+            "windows": 862,
             "linux": 93,
             "macos": 25
           }
@@ -11947,5 +11947,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-19T21:17:33.335Z"
+  "lastUpdated": "2026-08-19T21:48:34.854Z"
 }
