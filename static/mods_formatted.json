@@ -5756,7 +5756,7 @@
             "macos": "https://github.com/RealOfficialKraken/Jak1-Fish/releases/download/v1.2.3/macos-intel-v1.2.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 11,
+            "windows": 12,
             "linux": 1,
             "macos": 0
           }
@@ -6668,7 +6668,7 @@
             "macos": "https://github.com/RealOfficialKraken/pre-release--Jak3HMPlus/releases/download/v1.0.2/macos-intel-v1.0.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 642,
+            "windows": 643,
             "linux": 88,
             "macos": 7
           }
@@ -8045,7 +8045,7 @@
           "assetDownloadCounts": {
             "windows": 1915,
             "linux": 352,
-            "macos": 25
+            "macos": 26
           }
         }
       ],
@@ -11947,5 +11947,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-19T20:16:14.710Z"
+  "lastUpdated": "2026-08-19T20:51:51.830Z"
 }
