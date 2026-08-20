@@ -1587,7 +1587,7 @@
             "macos": "https://github.com/Hat-Kid/og-j1-board/releases/download/v0.0.6/macos-intel-v0.0.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 396,
+            "windows": 397,
             "linux": 57,
             "macos": 6
           }
@@ -3819,7 +3819,7 @@
             "macos": "https://github.com/ArchipelaGOAL/ArchipelaGOAL/releases/download/v0.5.8/macos-intel-v0.5.8.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 5427,
+            "windows": 5428,
             "linux": 430,
             "macos": 32
           }
@@ -4203,7 +4203,7 @@
             "macos": "https://github.com/narramoment/ArchipelaGOAL-II/releases/download/v0.2.0/macos-intel-v0.2.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 39,
+            "windows": 40,
             "linux": 3,
             "macos": 0
           }
@@ -8064,7 +8064,7 @@
             "macos": "https://github.com/CraiyDev/Better-Dark-Jak/releases/download/v0.0.2/macos-intel-v0.0.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1918,
+            "windows": 1919,
             "linux": 352,
             "macos": 26
           }
@@ -9907,7 +9907,7 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.45/macos-intel-v0.0.45.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 7,
+            "windows": 9,
             "linux": 0,
             "macos": 1
           }
@@ -11482,7 +11482,7 @@
             "macos": "https://github.com/Cuttlefishthesage/OG-Mod-Base-Glacier/releases/download/v1.0.9/macos-intel-v1.0.9.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1210,
+            "windows": 1211,
             "linux": 170,
             "macos": 54
           }
@@ -11968,5 +11968,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-20T15:57:42.033Z"
+  "lastUpdated": "2026-08-20T16:24:36.095Z"
 }
