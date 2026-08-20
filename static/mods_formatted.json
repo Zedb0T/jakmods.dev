@@ -788,7 +788,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Randomizer/releases/download/v0.6.4/macos-intel-v0.6.4.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 590,
+            "windows": 591,
             "linux": 69,
             "macos": 31
           }
@@ -2862,7 +2862,7 @@
             "macos": "https://github.com/EvelynTSMG/Jak1-Pogo/releases/download/v1.0.3/macos-intel-v1.0.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 98,
+            "windows": 99,
             "linux": 15,
             "macos": 11
           }
@@ -8064,7 +8064,7 @@
             "macos": "https://github.com/CraiyDev/Better-Dark-Jak/releases/download/v0.0.2/macos-intel-v0.0.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1919,
+            "windows": 1920,
             "linux": 352,
             "macos": 26
           }
@@ -10819,7 +10819,7 @@
           },
           "assetDownloadCounts": {
             "windows": 4292,
-            "linux": 586,
+            "linux": 587,
             "macos": 0
           }
         },
@@ -11012,7 +11012,7 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 614,
+            "windows": 615,
             "linux": 84,
             "macos": 0
           }
@@ -11968,5 +11968,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-20T18:24:12.859Z"
+  "lastUpdated": "2026-08-20T19:10:09.778Z"
 }
