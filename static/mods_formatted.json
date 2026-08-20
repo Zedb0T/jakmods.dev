@@ -1587,7 +1587,7 @@
             "macos": "https://github.com/Hat-Kid/og-j1-board/releases/download/v0.0.6/macos-intel-v0.0.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 398,
+            "windows": 399,
             "linux": 57,
             "macos": 6
           }
@@ -3039,7 +3039,7 @@
             "macos": "https://github.com/EvelynTSMG/Jak-EveBase/releases/download/v0.1.2/macos-intel-v0.1.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1557,
+            "windows": 1559,
             "linux": 309,
             "macos": 22
           }
@@ -5756,7 +5756,7 @@
             "macos": "https://github.com/RealOfficialKraken/Jak1-Fish/releases/download/v1.2.4/macos-intel-v1.2.4.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 11,
+            "windows": 12,
             "linux": 1,
             "macos": 0
           }
@@ -9907,7 +9907,7 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.45/macos-intel-v0.0.45.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 11,
+            "windows": 12,
             "linux": 0,
             "macos": 1
           }
@@ -10771,7 +10771,7 @@
             "macos": "https://github.com/EvelynTSMG/Jak1-LifeDrain/releases/download/v1.0.0/macos-intel-v1.0.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 40,
+            "windows": 41,
             "linux": 2,
             "macos": 2
           }
@@ -11968,5 +11968,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-20T20:55:30.830Z"
+  "lastUpdated": "2026-08-20T21:18:59.597Z"
 }
