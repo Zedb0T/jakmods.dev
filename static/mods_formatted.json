@@ -3684,7 +3684,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Yosemite/releases/download/v0.0.3/macos-intel-v0.0.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 348,
+            "windows": 350,
             "linux": 29,
             "macos": 4
           }
@@ -3819,7 +3819,7 @@
             "macos": "https://github.com/ArchipelaGOAL/ArchipelaGOAL/releases/download/v0.5.8/macos-intel-v0.5.8.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 5433,
+            "windows": 5434,
             "linux": 430,
             "macos": 32
           }
@@ -4654,7 +4654,7 @@
             "macos": "https://github.com/my-opengoal-mods/OG-Jak-The-Chicken-Reborn/releases/download/v2.1.9/macos-intel-v2.1.9.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 774,
+            "windows": 775,
             "linux": 97,
             "macos": 23
           }
@@ -5225,7 +5225,7 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 584,
+            "windows": 585,
             "linux": 136,
             "macos": 0
           }
@@ -6496,7 +6496,7 @@
             "macos": "https://github.com/RealOfficialKraken/updated-HeroModePlus/releases/download/v1.0.1/macos-intel-v1.0.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 346,
+            "windows": 348,
             "linux": 36,
             "macos": 1
           }
@@ -11203,7 +11203,7 @@
             "macos": "https://github.com/Cuttlefishthesage/OG-Mod-Base/releases/download/v0.0.8-afoniddwr.2/macos-intel-v0.0.8-afoniddwr.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 759,
+            "windows": 760,
             "linux": 105,
             "macos": 29
           }
@@ -11989,5 +11989,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-20T23:48:10.424Z"
+  "lastUpdated": "2026-08-21T00:40:41.629Z"
 }
