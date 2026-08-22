@@ -5225,7 +5225,7 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 587,
+            "windows": 588,
             "linux": 137,
             "macos": 0
           }
@@ -6496,7 +6496,7 @@
             "macos": "https://github.com/RealOfficialKraken/updated-HeroModePlus/releases/download/v1.0.1/macos-intel-v1.0.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 352,
+            "windows": 353,
             "linux": 37,
             "macos": 1
           }
@@ -10860,7 +10860,7 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 4301,
+            "windows": 4302,
             "linux": 588,
             "macos": 0
           }
@@ -11610,7 +11610,7 @@
             "macos": "https://github.com/Cuttlefishthesage/BrumeVillage/releases/download/v1.0.3/macos-intel-v1.0.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 3088,
+            "windows": 3090,
             "linux": 470,
             "macos": 85
           }
@@ -11676,7 +11676,7 @@
             "macos": "https://github.com/Cuttlefishthesage/ErodedCoast/releases/download/v5.0.3/macos-intel-v5.0.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1720,
+            "windows": 1721,
             "linux": 275,
             "macos": 50
           }
@@ -12010,5 +12010,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-22T05:51:46.869Z"
+  "lastUpdated": "2026-08-22T06:22:24.812Z"
 }
