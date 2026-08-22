@@ -3218,7 +3218,7 @@
             "macos": "https://github.com/mfOliveira19/GordonAndDaxter-Mod/releases/download/v1.0.6/macos-intel-v1.0.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 263,
+            "windows": 264,
             "linux": 45,
             "macos": 1
           }
@@ -3820,7 +3820,7 @@
           },
           "assetDownloadCounts": {
             "windows": 5467,
-            "linux": 435,
+            "linux": 436,
             "macos": 32
           }
         },
@@ -4203,7 +4203,7 @@
             "macos": "https://github.com/narramoment/ArchipelaGOAL-II/releases/download/v0.2.0/macos-intel-v0.2.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 51,
+            "windows": 54,
             "linux": 5,
             "macos": 0
           }
@@ -5777,7 +5777,7 @@
             "macos": "https://github.com/RealOfficialKraken/Jak1-Fish/releases/download/v1.2.4/macos-intel-v1.2.4.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 33,
+            "windows": 34,
             "linux": 3,
             "macos": 0
           }
@@ -6223,7 +6223,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Daxter2/releases/download/v1.1.2/macos-intel-v1.1.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 749,
+            "windows": 750,
             "linux": 123,
             "macos": 4
           }
@@ -12010,5 +12010,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-22T23:13:09.248Z"
+  "lastUpdated": "2026-08-22T23:43:14.005Z"
 }
