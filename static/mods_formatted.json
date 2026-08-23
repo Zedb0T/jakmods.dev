@@ -4441,7 +4441,7 @@
             "macos": "https://github.com/Blake645/ArchipelaGOAL-3/releases/download/v1.2.1-jak3.0/macos-intel-v1.2.1-jak3.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 17,
+            "windows": 18,
             "linux": 1,
             "macos": 0
           }
@@ -7513,7 +7513,7 @@
             "macos": "https://github.com/RealOfficialKraken/roguelikejakii/releases/download/v0.0.54/macos-intel-v0.0.54.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1370,
+            "windows": 1372,
             "linux": 198,
             "macos": 18
           }
@@ -8085,7 +8085,7 @@
             "macos": "https://github.com/CraiyDev/Better-Dark-Jak/releases/download/v0.0.2/macos-intel-v0.0.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1935,
+            "windows": 1936,
             "linux": 355,
             "macos": 26
           }
@@ -11525,7 +11525,7 @@
           },
           "assetDownloadCounts": {
             "windows": 1221,
-            "linux": 171,
+            "linux": 172,
             "macos": 54
           }
         },
@@ -12010,5 +12010,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-23T17:42:35.635Z"
+  "lastUpdated": "2026-08-23T18:15:44.604Z"
 }
