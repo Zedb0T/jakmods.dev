@@ -5798,7 +5798,7 @@
             "macos": "https://github.com/RealOfficialKraken/Jak1-Fish/releases/download/v1.2.4/macos-intel-v1.2.4.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 48,
+            "windows": 49,
             "linux": 3,
             "macos": 0
           }
@@ -7535,7 +7535,7 @@
           },
           "assetDownloadCounts": {
             "windows": 1378,
-            "linux": 198,
+            "linux": 199,
             "macos": 18
           }
         },
@@ -12031,5 +12031,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-23T22:45:06.293Z"
+  "lastUpdated": "2026-08-23T23:13:07.567Z"
 }
