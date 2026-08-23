@@ -5225,7 +5225,7 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 597,
+            "windows": 598,
             "linux": 137,
             "macos": 0
           }
@@ -7956,7 +7956,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Dark-Jak/releases/download/v0.5.0/macos-intel-v0.5.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 701,
+            "windows": 703,
             "linux": 106,
             "macos": 16
           }
@@ -12010,5 +12010,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-23T11:43:24.955Z"
+  "lastUpdated": "2026-08-23T12:19:02.685Z"
 }
