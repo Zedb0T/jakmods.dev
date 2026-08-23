@@ -1588,7 +1588,7 @@
           },
           "assetDownloadCounts": {
             "windows": 417,
-            "linux": 57,
+            "linux": 58,
             "macos": 6
           }
         },
@@ -3819,7 +3819,7 @@
             "macos": "https://github.com/ArchipelaGOAL/ArchipelaGOAL/releases/download/v0.5.8/macos-intel-v0.5.8.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 5479,
+            "windows": 5480,
             "linux": 438,
             "macos": 32
           }
@@ -6497,7 +6497,7 @@
           },
           "assetDownloadCounts": {
             "windows": 361,
-            "linux": 38,
+            "linux": 39,
             "macos": 1
           }
         },
@@ -6711,7 +6711,7 @@
           },
           "assetDownloadCounts": {
             "windows": 669,
-            "linux": 90,
+            "linux": 91,
             "macos": 7
           }
         },
@@ -12010,5 +12010,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-23T16:50:10.094Z"
+  "lastUpdated": "2026-08-23T17:13:07.385Z"
 }
