@@ -788,7 +788,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Randomizer/releases/download/v0.6.4/macos-intel-v0.6.4.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 598,
+            "windows": 599,
             "linux": 69,
             "macos": 31
           }
@@ -3039,7 +3039,7 @@
             "macos": "https://github.com/EvelynTSMG/Jak-EveBase/releases/download/v0.1.2/macos-intel-v0.1.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1575,
+            "windows": 1576,
             "linux": 310,
             "macos": 22
           }
@@ -3218,7 +3218,7 @@
             "macos": "https://github.com/mfOliveira19/GordonAndDaxter-Mod/releases/download/v1.0.6/macos-intel-v1.0.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 282,
+            "windows": 283,
             "linux": 46,
             "macos": 2
           }
@@ -3365,7 +3365,7 @@
             "macos": "https://github.com/mfOliveira19/GordonAndDaxter-Mod/releases/download/v0.1.1/macos-intel-v0.1.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 366,
+            "windows": 367,
             "linux": 59,
             "macos": 10
           }
@@ -3819,7 +3819,7 @@
             "macos": "https://github.com/ArchipelaGOAL/ArchipelaGOAL/releases/download/v0.5.8/macos-intel-v0.5.8.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 5501,
+            "windows": 5503,
             "linux": 441,
             "macos": 32
           }
@@ -6517,7 +6517,7 @@
             "macos": "https://github.com/RealOfficialKraken/updated-HeroModePlus/releases/download/v1.0.1/macos-intel-v1.0.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 370,
+            "windows": 371,
             "linux": 39,
             "macos": 1
           }
@@ -6731,7 +6731,7 @@
             "macos": "https://github.com/RealOfficialKraken/pre-release--Jak3HMPlus/releases/download/v1.0.2/macos-intel-v1.0.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 679,
+            "windows": 680,
             "linux": 93,
             "macos": 7
           }
@@ -10881,7 +10881,7 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 4319,
+            "windows": 4320,
             "linux": 590,
             "macos": 0
           }
@@ -12031,5 +12031,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-24T12:26:34.759Z"
+  "lastUpdated": "2026-08-24T13:30:15.208Z"
 }
