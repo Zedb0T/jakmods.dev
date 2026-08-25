@@ -684,6 +684,8 @@ mods:
     authors: ["barg", "ThaRixer", "bintendo42"]
     tags: ["speedrunning", "gameplay-mod"]
     website_url: "https://github.com/OpenGOAL-Mods/OG-ILs/blob/main/README.md"
+    ignore_versions:
+      - "0.1.15"
     per_game_config:
       jak2:
         release_date_override: "2025-03-15"
