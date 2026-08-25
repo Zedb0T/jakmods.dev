@@ -3218,7 +3218,7 @@
             "macos": "https://github.com/mfOliveira19/GordonAndDaxter-Mod/releases/download/v1.0.6/macos-intel-v1.0.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 298,
+            "windows": 299,
             "linux": 46,
             "macos": 2
           }
@@ -7534,7 +7534,7 @@
             "macos": "https://github.com/RealOfficialKraken/roguelikejakii/releases/download/v0.0.54/macos-intel-v0.0.54.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1385,
+            "windows": 1386,
             "linux": 199,
             "macos": 18
           }
@@ -12074,5 +12074,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-25T22:16:57.612Z"
+  "lastUpdated": "2026-08-25T22:52:20.142Z"
 }
