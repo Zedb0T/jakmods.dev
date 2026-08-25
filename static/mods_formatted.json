@@ -3218,7 +3218,7 @@
             "macos": "https://github.com/mfOliveira19/GordonAndDaxter-Mod/releases/download/v1.0.6/macos-intel-v1.0.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 288,
+            "windows": 290,
             "linux": 46,
             "macos": 2
           }
@@ -3819,7 +3819,7 @@
             "macos": "https://github.com/ArchipelaGOAL/ArchipelaGOAL/releases/download/v0.5.8/macos-intel-v0.5.8.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 5515,
+            "windows": 5516,
             "linux": 441,
             "macos": 32
           }
@@ -5246,7 +5246,7 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 606,
+            "windows": 607,
             "linux": 141,
             "macos": 0
           }
@@ -8495,6 +8495,28 @@
       ],
       "versions": [
         {
+          "version": "0.1.15",
+          "publishedDate": "2026-08-25T07:35:51Z",
+          "supportedGames": [
+            "jak2",
+            "jak3"
+          ],
+          "settings": {
+            "decompConfigOverride": "",
+            "shareVanillaSaves": false
+          },
+          "assets": {
+            "windows": "https://github.com/OpenGOAL-Mods/OG-ILs/releases/download/v0.1.15/windows-v0.1.15.zip",
+            "linux": "https://github.com/OpenGOAL-Mods/OG-ILs/releases/download/v0.1.15/linux-v0.1.15.tar.gz",
+            "macos": "https://github.com/OpenGOAL-Mods/OG-ILs/releases/download/v0.1.15/macos-intel-v0.1.15.tar.gz"
+          },
+          "assetDownloadCounts": {
+            "windows": 0,
+            "linux": 0,
+            "macos": 0
+          }
+        },
+        {
           "version": "0.1.13",
           "publishedDate": "2026-05-21T07:35:48Z",
           "supportedGames": [
@@ -9933,6 +9955,27 @@
         "jak1"
       ],
       "versions": [
+        {
+          "version": "0.0.47",
+          "publishedDate": "2026-08-25T07:25:19Z",
+          "supportedGames": [
+            "jak1"
+          ],
+          "settings": {
+            "decompConfigOverride": "",
+            "shareVanillaSaves": false
+          },
+          "assets": {
+            "windows": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.47/windows-v0.0.47.zip",
+            "linux": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.47/linux-v0.0.47.tar.gz",
+            "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.47/macos-intel-v0.0.47.tar.gz"
+          },
+          "assetDownloadCounts": {
+            "windows": 0,
+            "linux": 0,
+            "macos": 0
+          }
+        },
         {
           "version": "0.0.46",
           "publishedDate": "2026-08-21T01:41:03Z",
@@ -12031,5 +12074,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-25T07:24:30.076Z"
+  "lastUpdated": "2026-08-25T08:07:39.906Z"
 }
