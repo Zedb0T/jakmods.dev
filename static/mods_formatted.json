@@ -3820,7 +3820,7 @@
           },
           "assetDownloadCounts": {
             "windows": 5518,
-            "linux": 441,
+            "linux": 442,
             "macos": 32
           }
         },
@@ -4675,7 +4675,7 @@
             "macos": "https://github.com/my-opengoal-mods/OG-Jak-The-Chicken-Reborn/releases/download/v2.1.9/macos-intel-v2.1.9.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 784,
+            "windows": 785,
             "linux": 97,
             "macos": 23
           }
@@ -5798,7 +5798,7 @@
             "macos": "https://github.com/RealOfficialKraken/Jak1-Fish/releases/download/v1.2.4/macos-intel-v1.2.4.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 56,
+            "windows": 57,
             "linux": 4,
             "macos": 0
           }
@@ -6244,7 +6244,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Daxter2/releases/download/v1.1.2/macos-intel-v1.1.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 761,
+            "windows": 762,
             "linux": 124,
             "macos": 4
           }
@@ -11118,7 +11118,7 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 620,
+            "windows": 621,
             "linux": 84,
             "macos": 0
           }
@@ -12074,5 +12074,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-25T13:27:54.847Z"
+  "lastUpdated": "2026-08-25T14:13:45.318Z"
 }
