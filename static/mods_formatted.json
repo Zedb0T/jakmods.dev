@@ -8495,8 +8495,8 @@
       ],
       "versions": [
         {
-          "version": "0.1.15",
-          "publishedDate": "2026-08-25T07:35:51Z",
+          "version": "0.1.16",
+          "publishedDate": "2026-08-25T18:11:03Z",
           "supportedGames": [
             "jak2",
             "jak3"
@@ -8506,13 +8506,13 @@
             "shareVanillaSaves": false
           },
           "assets": {
-            "windows": "https://github.com/OpenGOAL-Mods/OG-ILs/releases/download/v0.1.15/windows-v0.1.15.zip",
-            "linux": "https://github.com/OpenGOAL-Mods/OG-ILs/releases/download/v0.1.15/linux-v0.1.15.tar.gz",
-            "macos": "https://github.com/OpenGOAL-Mods/OG-ILs/releases/download/v0.1.15/macos-intel-v0.1.15.tar.gz"
+            "windows": "https://github.com/OpenGOAL-Mods/OG-ILs/releases/download/v0.1.16/windows-v0.1.16.zip",
+            "linux": "https://github.com/OpenGOAL-Mods/OG-ILs/releases/download/v0.1.16/linux-v0.1.16.tar.gz",
+            "macos": "https://github.com/OpenGOAL-Mods/OG-ILs/releases/download/v0.1.16/macos-intel-v0.1.16.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 5,
-            "linux": 1,
+            "windows": 0,
+            "linux": 0,
             "macos": 0
           }
         },
@@ -10924,7 +10924,7 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 4330,
+            "windows": 4331,
             "linux": 593,
             "macos": 0
           }
@@ -12074,5 +12074,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-25T17:53:18.161Z"
+  "lastUpdated": "2026-08-25T18:24:24.897Z"
 }
