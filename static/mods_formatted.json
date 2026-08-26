@@ -5267,7 +5267,7 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 612,
+            "windows": 613,
             "linux": 141,
             "macos": 0
           }
@@ -12095,5 +12095,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-08-26T10:06:00.749Z"
+  "lastUpdated": "2026-08-26T11:28:05.800Z"
 }
