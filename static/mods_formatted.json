@@ -2591,7 +2591,7 @@
           "assetDownloadCounts": {
             "windows": 1362,
             "linux": 233,
-            "macos": 37
+            "macos": 38
           }
         },
         {
@@ -3819,8 +3819,8 @@
             "macos": "https://github.com/ArchipelaGOAL/ArchipelaGOAL/releases/download/v0.5.8/macos-intel-v0.5.8.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 5968,
-            "linux": 487,
+            "windows": 5969,
+            "linux": 488,
             "macos": 33
           }
         },
@@ -4504,7 +4504,7 @@
             "macos": "https://github.com/Blake645/ArchipelaGOAL-3/releases/download/v1.3.0/macos-intel-v1.2.4-jak3.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 66,
+            "windows": 67,
             "linux": 5,
             "macos": 0
           }
@@ -6349,7 +6349,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Daxter2/releases/download/v1.1.2/macos-intel-v1.1.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 821,
+            "windows": 822,
             "linux": 132,
             "macos": 6
           }
@@ -6489,7 +6489,7 @@
             "macos": "https://github.com/myogmods/Jak-the-Mercenary/releases/download/v0.0.5/macos-intel-v0.0.5.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 99,
+            "windows": 100,
             "linux": 15,
             "macos": 0
           }
@@ -6623,7 +6623,7 @@
           },
           "assetDownloadCounts": {
             "windows": 528,
-            "linux": 61,
+            "linux": 62,
             "macos": 3
           }
         },
@@ -7640,7 +7640,7 @@
           },
           "assetDownloadCounts": {
             "windows": 1450,
-            "linux": 210,
+            "linux": 211,
             "macos": 18
           }
         },
@@ -8082,7 +8082,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Dark-Jak/releases/download/v0.5.0/macos-intel-v0.5.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 748,
+            "windows": 749,
             "linux": 110,
             "macos": 16
           }
@@ -11394,7 +11394,7 @@
           },
           "assetDownloadCounts": {
             "windows": 654,
-            "linux": 88,
+            "linux": 89,
             "macos": 0
           }
         },
@@ -12015,7 +12015,7 @@
             "macos": "https://github.com/Cuttlefishthesage/ErodedCoast/releases/download/v5.0.3/macos-intel-v5.0.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1829,
+            "windows": 1833,
             "linux": 296,
             "macos": 53
           }
@@ -12349,5 +12349,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-09-19T17:37:10.829Z"
+  "lastUpdated": "2026-09-19T19:46:58.255Z"
 }
