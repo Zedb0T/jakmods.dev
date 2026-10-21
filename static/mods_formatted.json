@@ -1610,7 +1610,7 @@
             "macos": "https://github.com/Hat-Kid/og-j1-board/releases/download/v0.0.6/macos-intel-v0.0.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 741,
+            "windows": 743,
             "linux": 115,
             "macos": 22
           }
@@ -3241,7 +3241,7 @@
             "macos": "https://github.com/mfOliveira19/GordonAndDaxter-Mod/releases/download/v1.0.6/macos-intel-v1.0.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 661,
+            "windows": 662,
             "linux": 105,
             "macos": 12
           }
@@ -3842,8 +3842,8 @@
             "macos": "https://github.com/ArchipelaGOAL/ArchipelaGOAL/releases/download/v0.5.9/macos-intel-v0.5.9.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 671,
-            "linux": 69,
+            "windows": 678,
+            "linux": 70,
             "macos": 9
           }
         },
@@ -3864,7 +3864,7 @@
           },
           "assetDownloadCounts": {
             "windows": 6072,
-            "linux": 494,
+            "linux": 495,
             "macos": 35
           }
         },
@@ -4247,8 +4247,8 @@
             "macos": "https://github.com/narramoment/ArchipelaGOAL-II/releases/download/v1.1.1/macos-intel-v1.1.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 168,
-            "linux": 5,
+            "windows": 171,
+            "linux": 6,
             "macos": 1
           }
         },
@@ -4590,8 +4590,8 @@
             "macos": "https://github.com/Blake645/ArchipelaGOAL-3/releases/download/v3.0.1/macos-intel-v3.0.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 94,
-            "linux": 3,
+            "windows": 98,
+            "linux": 4,
             "macos": 1
           }
         },
@@ -5668,7 +5668,7 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 822,
+            "windows": 823,
             "linux": 194,
             "macos": 0
           }
@@ -7153,7 +7153,7 @@
             "macos": "https://github.com/RealOfficialKraken/pre-release--Jak3HMPlus/releases/download/v1.0.2/macos-intel-v1.0.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1146,
+            "windows": 1147,
             "linux": 157,
             "macos": 11
           }
@@ -8528,7 +8528,7 @@
             "macos": "https://github.com/CraiyDev/Better-Dark-Jak/releases/download/v0.0.2/macos-intel-v0.0.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 2169,
+            "windows": 2171,
             "linux": 388,
             "macos": 35
           }
@@ -9820,7 +9820,7 @@
             "macos": "https://github.com/my-opengoal-mods/OG-warp-randomizer/releases/download/v0.0.16/macos-intel-v0.0.16.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 278,
+            "windows": 279,
             "linux": 30,
             "macos": 27
           }
@@ -11959,7 +11959,7 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 4698,
+            "windows": 4699,
             "linux": 669,
             "macos": 0
           }
@@ -12775,7 +12775,7 @@
             "macos": "https://github.com/Cuttlefishthesage/ErodedCoast/releases/download/v5.0.3/macos-intel-v5.0.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1977,
+            "windows": 1978,
             "linux": 321,
             "macos": 65
           }
@@ -13031,7 +13031,7 @@
             "macos": "https://github.com/Clankape/OG-Mod-Base-Halloween/releases/download/v0.0.4/macos-intel-v0.0.4.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 726,
+            "windows": 727,
             "linux": 58,
             "macos": 26
           }
@@ -13109,5 +13109,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-10-21T15:46:16.925Z"
+  "lastUpdated": "2026-10-21T19:48:38.460Z"
 }
