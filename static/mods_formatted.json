@@ -1610,7 +1610,7 @@
             "macos": "https://github.com/Hat-Kid/og-j1-board/releases/download/v0.0.6/macos-intel-v0.0.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 748,
+            "windows": 749,
             "linux": 115,
             "macos": 22
           }
@@ -1855,10 +1855,141 @@
       "supportedGames": [
         "jak1"
       ],
-      "versions": [],
+      "versions": [
+        {
+          "version": "0.2.7",
+          "publishedDate": "2025-11-21T21:31:05Z",
+          "supportedGames": [
+            "jak1"
+          ],
+          "settings": {
+            "decompConfigOverride": "",
+            "shareVanillaSaves": false
+          },
+          "assets": {
+            "windows": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.7/windows-v0.2.7.zip",
+            "linux": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.7/linux-v0.2.7.tar.gz",
+            "macos": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.7/macos-intel-v0.2.7.tar.gz"
+          },
+          "assetDownloadCounts": {
+            "windows": 289,
+            "linux": 52,
+            "macos": 13
+          }
+        },
+        {
+          "version": "0.2.6",
+          "publishedDate": "2025-11-21T21:06:34Z",
+          "supportedGames": [
+            "jak1"
+          ],
+          "settings": {
+            "decompConfigOverride": "",
+            "shareVanillaSaves": false
+          },
+          "assets": {
+            "windows": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.6/windows-v0.2.6.zip",
+            "linux": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.6/linux-v0.2.6.tar.gz",
+            "macos": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.6/macos-intel-v0.2.6.tar.gz"
+          },
+          "assetDownloadCounts": {
+            "windows": 4,
+            "linux": 3,
+            "macos": 3
+          }
+        },
+        {
+          "version": "0.2.5",
+          "publishedDate": "2025-05-10T04:22:22Z",
+          "supportedGames": [
+            "jak1"
+          ],
+          "settings": {
+            "decompConfigOverride": "",
+            "shareVanillaSaves": false
+          },
+          "assets": {
+            "windows": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.5/windows-v0.2.5.zip",
+            "linux": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.5/linux-v0.2.5.tar.gz",
+            "macos": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.5/macos-intel-v0.2.5.tar.gz"
+          },
+          "assetDownloadCounts": {
+            "windows": 177,
+            "linux": 10,
+            "macos": 16
+          }
+        },
+        {
+          "version": "0.2.0",
+          "publishedDate": "2025-01-30T22:55:33Z",
+          "supportedGames": [
+            "jak1"
+          ],
+          "settings": {
+            "decompConfigOverride": "",
+            "shareVanillaSaves": false
+          },
+          "assets": {
+            "windows": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.0/windows-v0.2.0.zip",
+            "linux": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.0/linux-v0.2.0.tar.gz",
+            "macos": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.0/macos-intel-v0.2.0.tar.gz"
+          },
+          "assetDownloadCounts": {
+            "windows": 109,
+            "linux": 15,
+            "macos": 12
+          }
+        },
+        {
+          "version": "0.1.0",
+          "publishedDate": "2024-09-02T21:14:27Z",
+          "supportedGames": [
+            "jak1"
+          ],
+          "settings": {
+            "decompConfigOverride": "",
+            "shareVanillaSaves": false
+          },
+          "assets": {
+            "windows": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.1.0/windows-v0.1.0.zip",
+            "linux": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.1.0/linux-v0.1.0.tar.gz",
+            "macos": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.1.0/macos-intel-v0.1.0.tar.gz"
+          },
+          "assetDownloadCounts": {
+            "windows": 173,
+            "linux": 19,
+            "macos": 15
+          }
+        },
+        {
+          "version": "0.0.2",
+          "publishedDate": "2024-08-20T05:32:19Z",
+          "supportedGames": [
+            "jak1"
+          ],
+          "settings": {
+            "decompConfigOverride": "",
+            "shareVanillaSaves": false
+          },
+          "assets": {
+            "windows": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.0.2/windows-v0.0.2.zip",
+            "linux": null,
+            "macos": null
+          },
+          "assetDownloadCounts": {
+            "windows": 34,
+            "linux": 0,
+            "macos": 0
+          }
+        }
+      ],
       "coverArtUrl": "https://raw.githubusercontent.com/himham-jak/Jak1-but-Microtransactions/microtransactions/ModImage.png",
       "thumbnailArtUrl": "https://raw.githubusercontent.com/OpenGOAL-Mods/jakmods.dev/main/ModImages/MicrotransactionsSmall.png",
-      "perGameConfig": {},
+      "perGameConfig": {
+        "jak1": {
+          "releaseDate": "2022-08-28"
+        }
+      },
       "externalLink": null
     },
     "orb-hunt": {
@@ -3000,7 +3131,7 @@
             "macos": "https://github.com/this-guy-git/JGChaos/releases/download/v0.3.0/macos-intel-v0.3.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 122,
+            "windows": 123,
             "linux": 16,
             "macos": 6
           }
@@ -3110,7 +3241,7 @@
             "macos": "https://github.com/mfOliveira19/GordonAndDaxter-Mod/releases/download/v1.0.6/macos-intel-v1.0.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 664,
+            "windows": 666,
             "linux": 105,
             "macos": 12
           }
@@ -3711,7 +3842,7 @@
             "macos": "https://github.com/ArchipelaGOAL/ArchipelaGOAL/releases/download/v0.5.9/macos-intel-v0.5.9.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 699,
+            "windows": 702,
             "linux": 71,
             "macos": 9
           }
@@ -4116,7 +4247,7 @@
             "macos": "https://github.com/narramoment/ArchipelaGOAL-II/releases/download/v1.1.1/macos-intel-v1.1.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 175,
+            "windows": 176,
             "linux": 6,
             "macos": 1
           }
@@ -4459,7 +4590,7 @@
             "macos": "https://github.com/Blake645/ArchipelaGOAL-3/releases/download/v3.0.1/macos-intel-v3.0.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 106,
+            "windows": 107,
             "linux": 4,
             "macos": 1
           }
@@ -4966,7 +5097,7 @@
             "macos": "https://github.com/my-opengoal-mods/OG-Jak-The-Chicken-Reborn/releases/download/v2.1.9/macos-intel-v2.1.9.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 875,
+            "windows": 876,
             "linux": 106,
             "macos": 32
           }
@@ -6808,7 +6939,7 @@
             "macos": "https://github.com/RealOfficialKraken/updated-HeroModePlus/releases/download/v1.0.1/macos-intel-v1.0.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 726,
+            "windows": 727,
             "linux": 86,
             "macos": 4
           }
@@ -8268,7 +8399,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Dark-Jak/releases/download/v0.5.0/macos-intel-v0.5.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 790,
+            "windows": 792,
             "linux": 117,
             "macos": 19
           }
@@ -10350,7 +10481,7 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.6.3/macos-intel-v1.6.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 13,
+            "windows": 14,
             "linux": 1,
             "macos": 0
           }
@@ -12492,7 +12623,7 @@
             "macos": "https://github.com/Cuttlefishthesage/OG-Mod-Base-Glacier/releases/download/v1.0.9/macos-intel-v1.0.9.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1327,
+            "windows": 1328,
             "linux": 196,
             "macos": 58
           }
@@ -12644,7 +12775,7 @@
             "macos": "https://github.com/Cuttlefishthesage/ErodedCoast/releases/download/v5.0.3/macos-intel-v5.0.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1983,
+            "windows": 1984,
             "linux": 321,
             "macos": 65
           }
@@ -12751,7 +12882,7 @@
             "macos": "https://github.com/slak1-OG-mods/jak1-sandpit-level/releases/download/v2.0.1-modbase-merge.4/macos-intel-v2.0.1-modbase-merge.4.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 978,
+            "windows": 979,
             "linux": 137,
             "macos": 34
           }
@@ -12978,5 +13109,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-10-22T17:26:17.956Z"
+  "lastUpdated": "2026-10-22T20:41:12.458Z"
 }
