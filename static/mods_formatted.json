@@ -1872,7 +1872,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Microtransactions/releases/download/v0.2.7/macos-intel-v0.2.7.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 290,
+            "windows": 291,
             "linux": 52,
             "macos": 13
           }
@@ -2612,7 +2612,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Patched/releases/download/v1.1.3/macos-intel-v1.1.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1547,
+            "windows": 1548,
             "linux": 257,
             "macos": 47
           }
@@ -3241,8 +3241,8 @@
             "macos": "https://github.com/mfOliveira19/GordonAndDaxter-Mod/releases/download/v1.0.6/macos-intel-v1.0.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 701,
-            "linux": 112,
+            "windows": 702,
+            "linux": 113,
             "macos": 14
           }
         },
@@ -3842,8 +3842,8 @@
             "macos": "https://github.com/ArchipelaGOAL/ArchipelaGOAL/releases/download/v0.5.9/macos-intel-v0.5.9.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 830,
-            "linux": 84,
+            "windows": 832,
+            "linux": 85,
             "macos": 12
           }
         },
@@ -4247,7 +4247,7 @@
             "macos": "https://github.com/narramoment/ArchipelaGOAL-II/releases/download/v1.1.1/macos-intel-v1.1.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 219,
+            "windows": 221,
             "linux": 9,
             "macos": 1
           }
@@ -4590,7 +4590,7 @@
             "macos": "https://github.com/Blake645/ArchipelaGOAL-3/releases/download/v3.0.2/macos-intel-v3.0.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 85,
+            "windows": 88,
             "linux": 2,
             "macos": 0
           }
@@ -5689,8 +5689,8 @@
             "macos": null
           },
           "assetDownloadCounts": {
-            "windows": 852,
-            "linux": 195,
+            "windows": 853,
+            "linux": 196,
             "macos": 0
           }
         },
@@ -6687,7 +6687,7 @@
             "macos": "https://github.com/OpenGOAL-Mods/OG-Daxter2/releases/download/v1.1.2/macos-intel-v1.1.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 928,
+            "windows": 929,
             "linux": 154,
             "macos": 8
           }
@@ -6960,7 +6960,7 @@
             "macos": "https://github.com/RealOfficialKraken/updated-HeroModePlus/releases/download/v1.0.1/macos-intel-v1.0.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 766,
+            "windows": 769,
             "linux": 94,
             "macos": 5
           }
@@ -7174,7 +7174,7 @@
             "macos": "https://github.com/RealOfficialKraken/pre-release--Jak3HMPlus/releases/download/v1.0.2/macos-intel-v1.0.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1195,
+            "windows": 1197,
             "linux": 166,
             "macos": 11
           }
@@ -7977,7 +7977,7 @@
             "macos": "https://github.com/RealOfficialKraken/roguelikejakii/releases/download/v0.0.54/macos-intel-v0.0.54.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1554,
+            "windows": 1555,
             "linux": 222,
             "macos": 25
           }
@@ -8549,8 +8549,8 @@
             "macos": "https://github.com/CraiyDev/Better-Dark-Jak/releases/download/v0.0.2/macos-intel-v0.0.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 2195,
-            "linux": 398,
+            "windows": 2199,
+            "linux": 400,
             "macos": 35
           }
         }
@@ -8838,7 +8838,7 @@
             "macos": "https://github.com/Nick0778/OG-Jak2-Defend-The-Portwall/releases/download/v1.1.0/macos-intel-v2.0.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 575,
+            "windows": 578,
             "linux": 70,
             "macos": 8
           }
@@ -10487,6 +10487,27 @@
       ],
       "versions": [
         {
+          "version": "1.7.3",
+          "publishedDate": "2026-10-29T03:06:08Z",
+          "supportedGames": [
+            "jak1"
+          ],
+          "settings": {
+            "decompConfigOverride": "",
+            "shareVanillaSaves": false
+          },
+          "assets": {
+            "windows": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.7.3/windows-v1.7.3.zip",
+            "linux": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.7.3/linux-v1.7.3.tar.gz",
+            "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.7.3/macos-intel-v1.7.3.tar.gz"
+          },
+          "assetDownloadCounts": {
+            "windows": 1,
+            "linux": 2,
+            "macos": 1
+          }
+        },
+        {
           "version": "1.7.2",
           "publishedDate": "2026-10-27T02:20:15Z",
           "supportedGames": [
@@ -10502,9 +10523,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.7.2/macos-intel-v1.7.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 9,
-            "linux": 3,
-            "macos": 0
+            "windows": 14,
+            "linux": 4,
+            "macos": 1
           }
         },
         {
@@ -10523,9 +10544,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.7.1/macos-intel-v1.7.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 12,
-            "linux": 4,
-            "macos": 2
+            "windows": 13,
+            "linux": 5,
+            "macos": 3
           }
         },
         {
@@ -10544,9 +10565,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.7.0/macos-intel-v1.7.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 7,
-            "linux": 1,
-            "macos": 0
+            "windows": 8,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -10565,9 +10586,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.6.4/macos-intel-v1.6.4.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 9,
-            "linux": 0,
-            "macos": 0
+            "windows": 10,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -10586,9 +10607,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.6.3/macos-intel-v1.6.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 14,
-            "linux": 2,
-            "macos": 0
+            "windows": 15,
+            "linux": 3,
+            "macos": 1
           }
         },
         {
@@ -10607,9 +10628,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.6.2/macos-intel-v1.6.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 3,
-            "linux": 0,
-            "macos": 0
+            "windows": 4,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -10628,9 +10649,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.6.1/macos-intel-v1.6.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 5,
-            "linux": 0,
-            "macos": 1
+            "windows": 6,
+            "linux": 1,
+            "macos": 2
           }
         },
         {
@@ -10649,9 +10670,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.6.0/macos-intel-v1.6.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 15,
-            "linux": 1,
-            "macos": 1
+            "windows": 16,
+            "linux": 2,
+            "macos": 2
           }
         },
         {
@@ -10670,9 +10691,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.5.3/macos-intel-v1.5.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 8,
-            "linux": 0,
-            "macos": 1
+            "windows": 11,
+            "linux": 1,
+            "macos": 2
           }
         },
         {
@@ -10691,9 +10712,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.5.2/macos-intel-v1.5.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 5,
-            "linux": 1,
-            "macos": 1
+            "windows": 6,
+            "linux": 2,
+            "macos": 2
           }
         },
         {
@@ -10712,9 +10733,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.5.1/macos-intel-v1.5.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1,
-            "linux": 0,
-            "macos": 0
+            "windows": 2,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -10733,9 +10754,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.5.0/macos-intel-v1.5.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 4,
-            "linux": 1,
-            "macos": 0
+            "windows": 5,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -10754,9 +10775,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.4.8/macos-intel-v1.4.8.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 6,
-            "linux": 0,
-            "macos": 0
+            "windows": 7,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -10775,9 +10796,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.4.7/macos-intel-v1.4.7.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 22,
-            "linux": 2,
-            "macos": 2
+            "windows": 23,
+            "linux": 3,
+            "macos": 3
           }
         },
         {
@@ -10796,9 +10817,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.4.6/macos-intel-v1.4.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 13,
-            "linux": 0,
-            "macos": 0
+            "windows": 14,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -10817,9 +10838,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.4.5/macos-intel-v1.4.5.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 15,
-            "linux": 0,
-            "macos": 0
+            "windows": 16,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -10838,9 +10859,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.4.4/macos-intel-v1.4.4.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 22,
-            "linux": 1,
-            "macos": 0
+            "windows": 23,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -10859,9 +10880,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.4.3/macos-intel-v1.4.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 0,
-            "linux": 0,
-            "macos": 0
+            "windows": 1,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -10880,9 +10901,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.4.2/macos-intel-v1.4.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 6,
-            "linux": 0,
-            "macos": 0
+            "windows": 7,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -10901,9 +10922,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.4.1/macos-intel-v1.4.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 10,
-            "linux": 0,
-            "macos": 0
+            "windows": 11,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -10922,9 +10943,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.4.0/macos-intel-v1.4.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1,
-            "linux": 0,
-            "macos": 0
+            "windows": 2,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -10943,9 +10964,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.3.2/macos-intel-v1.3.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 12,
-            "linux": 0,
-            "macos": 0
+            "windows": 13,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -10964,9 +10985,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.3.1/macos-intel-v1.3.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 5,
-            "linux": 0,
-            "macos": 0
+            "windows": 6,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -10985,9 +11006,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.3.0/macos-intel-v1.3.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 9,
-            "linux": 0,
-            "macos": 1
+            "windows": 10,
+            "linux": 1,
+            "macos": 2
           }
         },
         {
@@ -11006,9 +11027,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.2.0/macos-intel-v1.2.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 3,
-            "linux": 0,
-            "macos": 0
+            "windows": 4,
+            "linux": 1,
+            "macos": 2
           }
         },
         {
@@ -11027,9 +11048,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.1.1/macos-intel-v1.1.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 21,
-            "linux": 1,
-            "macos": 0
+            "windows": 22,
+            "linux": 3,
+            "macos": 1
           }
         },
         {
@@ -11048,9 +11069,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.1.0/macos-intel-v1.1.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 2,
-            "linux": 0,
-            "macos": 0
+            "windows": 3,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11069,9 +11090,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.0.1/macos-intel-v1.0.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 17,
-            "linux": 0,
-            "macos": 0
+            "windows": 18,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -11090,9 +11111,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v1.0.0/macos-intel-v1.0.0.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 3,
-            "linux": 0,
-            "macos": 0
+            "windows": 4,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11111,9 +11132,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.47/macos-intel-v0.0.47.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 17,
-            "linux": 2,
-            "macos": 2
+            "windows": 18,
+            "linux": 3,
+            "macos": 3
           }
         },
         {
@@ -11132,9 +11153,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.46/macos-intel-v0.0.46.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 14,
-            "linux": 1,
-            "macos": 0
+            "windows": 15,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -11153,9 +11174,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.45/macos-intel-v0.0.45.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 14,
-            "linux": 0,
-            "macos": 1
+            "windows": 15,
+            "linux": 1,
+            "macos": 2
           }
         },
         {
@@ -11174,9 +11195,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.44/macos-intel-v0.0.44.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 9,
-            "linux": 0,
-            "macos": 1
+            "windows": 10,
+            "linux": 1,
+            "macos": 2
           }
         },
         {
@@ -11195,9 +11216,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.43/macos-intel-v0.0.43.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 7,
-            "linux": 0,
-            "macos": 1
+            "windows": 8,
+            "linux": 1,
+            "macos": 2
           }
         },
         {
@@ -11216,9 +11237,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.42/macos-intel-v0.0.42.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 11,
-            "linux": 0,
-            "macos": 1
+            "windows": 12,
+            "linux": 1,
+            "macos": 2
           }
         },
         {
@@ -11237,9 +11258,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.41/macos-intel-v0.0.41.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 2,
-            "linux": 0,
-            "macos": 0
+            "windows": 3,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11258,9 +11279,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.40/macos-intel-v0.0.40.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 3,
-            "linux": 0,
-            "macos": 1
+            "windows": 4,
+            "linux": 1,
+            "macos": 2
           }
         },
         {
@@ -11279,9 +11300,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.39/macos-intel-v0.0.39.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 8,
-            "linux": 0,
-            "macos": 0
+            "windows": 9,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11300,9 +11321,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.38/macos-intel-v0.0.38.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 0,
-            "linux": 0,
-            "macos": 0
+            "windows": 1,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11321,9 +11342,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.37/macos-intel-v0.0.37.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1,
-            "linux": 0,
-            "macos": 0
+            "windows": 2,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11342,9 +11363,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.35/macos-intel-v0.0.35.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 7,
-            "linux": 1,
-            "macos": 0
+            "windows": 8,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -11363,9 +11384,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.33/macos-intel-v0.0.33.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 4,
-            "linux": 0,
-            "macos": 0
+            "windows": 5,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11384,9 +11405,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.32/macos-intel-v0.0.32.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 11,
-            "linux": 0,
-            "macos": 0
+            "windows": 12,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -11405,9 +11426,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.31/macos-intel-v0.0.31.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 7,
-            "linux": 1,
-            "macos": 1
+            "windows": 8,
+            "linux": 2,
+            "macos": 2
           }
         },
         {
@@ -11426,9 +11447,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.30/macos-intel-v0.0.30.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 9,
-            "linux": 1,
-            "macos": 0
+            "windows": 10,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -11447,9 +11468,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.29/macos-intel-v0.0.29.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 13,
-            "linux": 1,
-            "macos": 0
+            "windows": 14,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -11468,9 +11489,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.28/macos-intel-v0.0.28.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 2,
-            "linux": 0,
-            "macos": 0
+            "windows": 3,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11489,9 +11510,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.26/macos-intel-v0.0.26.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 14,
-            "linux": 0,
-            "macos": 1
+            "windows": 15,
+            "linux": 1,
+            "macos": 2
           }
         },
         {
@@ -11510,9 +11531,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.25/macos-intel-v0.0.25.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 11,
-            "linux": 1,
-            "macos": 0
+            "windows": 12,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -11531,9 +11552,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.24/macos-intel-v0.0.24.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 15,
-            "linux": 0,
-            "macos": 0
+            "windows": 16,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11552,9 +11573,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.23/macos-intel-v0.0.23.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 4,
-            "linux": 0,
-            "macos": 0
+            "windows": 5,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11573,9 +11594,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.22/macos-intel-v0.0.22.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 16,
-            "linux": 1,
-            "macos": 0
+            "windows": 17,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -11594,9 +11615,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.21/macos-intel-v0.0.21.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 0,
-            "linux": 0,
-            "macos": 0
+            "windows": 1,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11615,9 +11636,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.20/macos-intel-v0.0.20.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 24,
-            "linux": 1,
-            "macos": 0
+            "windows": 25,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -11636,9 +11657,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.19/macos-intel-v0.0.19.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 5,
-            "linux": 0,
-            "macos": 0
+            "windows": 6,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11657,9 +11678,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.18/macos-intel-v0.0.18.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 7,
-            "linux": 0,
-            "macos": 0
+            "windows": 8,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11678,9 +11699,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.17/macos-intel-v0.0.17.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 3,
-            "linux": 0,
-            "macos": 0
+            "windows": 4,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11699,9 +11720,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.16/macos-intel-v0.0.16.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1,
-            "linux": 0,
-            "macos": 0
+            "windows": 2,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11720,9 +11741,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.15/macos-intel-v0.0.15.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 10,
-            "linux": 1,
-            "macos": 0
+            "windows": 11,
+            "linux": 2,
+            "macos": 2
           }
         },
         {
@@ -11741,9 +11762,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.12/macos-intel-v0.0.12.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 14,
-            "linux": 0,
-            "macos": 0
+            "windows": 15,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11762,9 +11783,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.11/macos-intel-v0.0.11.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1,
-            "linux": 0,
-            "macos": 0
+            "windows": 2,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11783,9 +11804,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.10/macos-intel-v0.0.10.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 8,
-            "linux": 0,
-            "macos": 0
+            "windows": 9,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11804,9 +11825,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.9/macos-intel-v0.0.9.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 9,
-            "linux": 1,
-            "macos": 0
+            "windows": 10,
+            "linux": 2,
+            "macos": 3
           }
         },
         {
@@ -11825,9 +11846,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.8/macos-intel-v0.0.8.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 0,
-            "linux": 0,
-            "macos": 0
+            "windows": 1,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11846,9 +11867,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.7/macos-intel-v0.0.7.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 4,
-            "linux": 1,
-            "macos": 0
+            "windows": 5,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -11867,9 +11888,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.6/macos-intel-v0.0.6.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1,
-            "linux": 0,
-            "macos": 0
+            "windows": 2,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11888,9 +11909,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.5/macos-intel-v0.0.5.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 5,
-            "linux": 0,
-            "macos": 0
+            "windows": 6,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11909,9 +11930,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.4/macos-intel-v0.0.4.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 7,
-            "linux": 1,
-            "macos": 0
+            "windows": 8,
+            "linux": 2,
+            "macos": 1
           }
         },
         {
@@ -11930,9 +11951,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.3/macos-intel-v0.0.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 0,
-            "linux": 0,
-            "macos": 0
+            "windows": 1,
+            "linux": 1,
+            "macos": 1
           }
         },
         {
@@ -11951,9 +11972,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.2/macos-intel-v0.0.2.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 4,
-            "linux": 1,
-            "macos": 1
+            "windows": 5,
+            "linux": 2,
+            "macos": 2
           }
         },
         {
@@ -11972,9 +11993,9 @@
             "macos": "https://github.com/MikeGamePro/OG-Complicated/releases/download/v0.0.1/macos-intel-v0.0.1.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 3,
-            "linux": 0,
-            "macos": 0
+            "windows": 4,
+            "linux": 1,
+            "macos": 1
           }
         }
       ],
@@ -12663,7 +12684,7 @@
             "macos": "https://github.com/Cuttlefishthesage/LL-OpenGOAL-ModBase/releases/download/v4.3.4/macos-intel-v4.3.4.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 1731,
+            "windows": 1732,
             "linux": 269,
             "macos": 65
           }
@@ -12814,7 +12835,7 @@
             "macos": "https://github.com/Cuttlefishthesage/BrumeVillage/releases/download/v1.0.3/macos-intel-v1.0.3.tar.gz"
           },
           "assetDownloadCounts": {
-            "windows": 3485,
+            "windows": 3486,
             "linux": 538,
             "macos": 99
           }
@@ -13137,7 +13158,7 @@
           },
           "assetDownloadCounts": {
             "windows": 739,
-            "linux": 58,
+            "linux": 59,
             "macos": 26
           }
         },
@@ -13214,5 +13235,5 @@
     }
   },
   "texturePacks": {},
-  "lastUpdated": "2026-10-29T00:32:34.232Z"
+  "lastUpdated": "2026-10-29T06:39:04.054Z"
 }
